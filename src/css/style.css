@@ -1,0 +1,10 @@
+/* header > nav */
+span.col.logo {
+	font-family: auto;
+	font-style: unset;
+	font-size: 50px;
+	font-weight: bolder;
+	color: honeydew;
+	text-shadow: 0px 0px 2px black;
+	/* text-decoration-color: darkkhaki; */
+}

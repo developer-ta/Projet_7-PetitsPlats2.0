@@ -1737,7 +1737,7 @@ const recipes = [
         "appliance": "Blender",
         "ustensils":["couteau", "verres"]
     },
-    {
+    { 
         "id": 50,
         "image": "Recette50.jpg",
         "name": "Frangipane",
