@@ -1,5 +1,5 @@
-/* header > nav */
-span.col.logo {
+ /* header > nav */
+ span.col.logo {
 	font-family: auto;
 	font-style: unset;
 	font-size: 50px;
@@ -7,4 +7,110 @@ span.col.logo {
 	color: honeydew;
 	text-shadow: 0px 0px 2px black;
 	/* text-decoration-color: darkkhaki; */
+}
+header[class="container"] {
+	/* border: 1px solid red;
+	height: 500px;
+	background-size: cover;
+	background-image: url('/assets/lampos-aritonang.jpg'); */
+}
+
+.bg-image {
+	/* border: 1px solid red; */
+	/* height: 54rem; */
+	background-size: contain;
+	background-image: url('/assets/Mask group.png');
+	/* scale: 0.4; */
+	/*! position: absolute; */
+	width: 1440px;
+	height: 667px;
+	left: 0px;
+	top: 0px;
+	background-repeat: no-repeat;
+}
+
+.logo {
+	/* Logo */
+
+
+	.logo {
+		width: 207px;
+		height: 25.26px;
+
+		/* // On click // Navigate to: "Home"; */
+		/* // Animate: Smart animate; */
+		animation-timing-function: ease-out;
+		animation-duration: 300ms;
+
+	}
+
+}
+
+.row.wrapper {
+	position: absolute;
+
+
+	background-color: white;
+	padding: 0px;
+	margin: 0px;
+	border-radius: 10px;
+	width: 954px;
+	height: 72px;
+	top: 406.42px;
+	left: 243px;
+	gap: 0px;
+
+}
+
+.input-group.flex-nowrap {
+
+	position: relative;
+
+	background-color: white;
+	padding: 5px;
+
+	border-radius: inherit;
+	overflow: hidden;
+}
+
+.form-control {
+	border: 0;
+	padding-right: 0;
+	border-radius: inherit;
+}
+
+#addon-wrapping {
+
+	background-color: black;
+	color: lightyellow;
+
+	font-size: xx-large;
+}
+
+.row.label-search h1 {
+
+	/* CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES */
+
+	position: absolute;
+	width: 890px;
+	height: 132px;
+	left: 275px;
+	top: 210px;
+
+	font-family: 'Anton';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 44px;
+	line-height: 66px;
+	text-align: center;
+
+	/* Yellow */
+	color: #FFD15B;
+
+
+}
+
+.input-group-prepend {
+	border: 0;
+
 }
