@@ -6,7 +6,7 @@ export class HttpClient {
 	//methods
 
 	async fetchData() {
-		debugger
+
 		const res = await fetch(this._strUrl);
 		if (res.ok) {
 			const data = await res.json();
@@ -17,7 +17,7 @@ export class HttpClient {
 	}
 
 	async getDataList(url) {
-		debugger
+
 		this._strUrl = url;
 		const data = await this.fetchData(url);
 
