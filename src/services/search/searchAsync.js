@@ -14,17 +14,30 @@ export class searchAsync {
 		this._valUserInReg = null;
 
 		this.indexList = new Set();
-
+		this.resultRecipes = null;
 		this.init();
 	}
 
 
 	init() {
 		this.bindEvent()
+
 	}
 
 	bindEvent() {
-		this.$search_btn.addEventListener("click", this.nameSearch)
+
+		this.$search_btn.addEventListener("click", async (ev) => {
+			ev.preventDefault();
+
+			let res = await this.searchResult();
+
+			this.indexList.add(res);
+
+			this.resultRecipes = this.Result(this.indexList)
+
+			console.log('resultRecipes: ', this.resultRecipes);
+
+		})
 	}
 
 	get ValUserInRegExp() {
@@ -41,15 +54,15 @@ export class searchAsync {
 	}
 
 	nameSearch = () => {
-		debugger;
-
+		debugger
+		let i = []
 		if (this.ValUserInRegExp) {
 
 			this._prototypeSearchModel.forEach(
 				({ name, index }) => {
 					if (name.match(this._valUserInReg)) {
 
-						this.indexList.add(index);
+						i.push(index);
 
 					}
 
@@ -57,14 +70,57 @@ export class searchAsync {
 			)
 		}
 		console.log('indexList: ', this.indexList.size);
-		return this.indexList
+		return i
+
+
 	}
 
-	ingredientSearch(strIndice) { }
+	ingredientSearch = () => {
+		debugger
+		let i = []
+		if (this.ValUserInRegExp) {
+
+			this._prototypeSearchModel.forEach(
+
+				({ ingredients, index }) => {
+
+					ingredients.forEach(ingredient => {
+
+						if (ingredient.match(this._valUserInReg)) {
+
+							i.add(index);
+
+						}
+
+					}
+					)
+
+				}
+			)
+		}
+		console.log('indexList: ', i);
+		return i
+	}
 
 	descriptionSearch(strIndice) { }
 
-	async SearchResult() { }
+	searchResult = async () => {
+		// await this.nameSearch();
+		// const res = await this.ingredientSearch();
+		const [a, b] = await Promise.all([this.nameSearch(), this.ingredientSearch()]);
+		console.log('indexList: ', this.indexList.size);
+		return [...a, ...b];
+
+
+
+	}
+
+	Result = (indexList => {
+		let res = []
+		indexList.forEach(i => res.push(this._recipes.at(i)))
+
+		return res
+	})
 
 
 
