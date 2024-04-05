@@ -1,9 +1,13 @@
+import { HomeController } from "../../controllers/HomeController.js";
+import { isExciteOrNotEmpty } from "../utils/validator.js";
+
 export class searchAsync {
 
 	constructor (recipeViewModel) {
 
 		this.$searchInput = document.querySelector('#user_input');
-		console.log('$searchInput: ', this.$searchInput);
+
+
 
 		this.$search_btn = document.querySelector('.bi-search');
 
@@ -14,7 +18,9 @@ export class searchAsync {
 		this._valUserInReg = null;
 
 		this.indexList = new Set();
+
 		this.resultRecipes = null;
+
 		this.init();
 	}
 
@@ -27,13 +33,25 @@ export class searchAsync {
 	bindEvent() {
 
 		this.$search_btn.addEventListener("click", async (ev) => {
+
+			debugger
+
 			ev.preventDefault();
+
+			this.indexList.clear();
 
 			let res = await this.searchResult();
 
-			this.indexList.add(res);
+			if (res.length > 0) {
+				this.indexList.add(res);
+				this.resultRecipes = this.Result(this.indexList)
+				if (isExciteOrNotEmpty(this.resultRecipes)) HomeController.mainDisplay(this.resultRecipes)
 
-			this.resultRecipes = this.Result(this.indexList)
+			}
+
+
+
+
 
 			console.log('resultRecipes: ', this.resultRecipes);
 
@@ -60,6 +78,7 @@ export class searchAsync {
 
 			this._prototypeSearchModel.forEach(
 				({ name, index }) => {
+					this.descriptionSearch
 					if (name.match(this._valUserInReg)) {
 
 						i.push(index);
@@ -76,6 +95,7 @@ export class searchAsync {
 	}
 
 	ingredientSearch = () => {
+
 		debugger
 		let i = []
 		if (this.ValUserInRegExp) {
@@ -85,7 +105,6 @@ export class searchAsync {
 				({ ingredients, index }) => {
 
 					ingredients.forEach(ingredient => {
-
 						if (ingredient.match(this._valUserInReg)) {
 
 							i.add(index);

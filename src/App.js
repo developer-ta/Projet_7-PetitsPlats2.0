@@ -1,3 +1,4 @@
+//import { HomeController } from "./controllers/HomeController.js";
 import { RecipeModel } from "./models/RecipeModel.js";
 import { HttpClient } from "./services/api/HttpClient.js";
 import { searchAsync } from "./services/search/searchAsync.js";
@@ -38,9 +39,9 @@ class App {
 
 			this.recipeViewModel = new RecipeModel(this.data)
 
-
-
 			this.search = new searchAsync(this.recipeViewModel)
+
+
 		}
 
 	}
