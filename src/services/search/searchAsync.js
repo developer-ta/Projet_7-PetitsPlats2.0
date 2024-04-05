@@ -43,8 +43,10 @@ export class searchAsync {
 			let res = await this.searchResult();
 
 			if (res.length > 0) {
+
 				this.indexList.add(res);
 				this.resultRecipes = this.Result(this.indexList)
+
 				if (isExciteOrNotEmpty(this.resultRecipes)) HomeController.mainDisplay(this.resultRecipes)
 
 			}
