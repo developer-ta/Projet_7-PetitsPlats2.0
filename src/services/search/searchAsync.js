@@ -17,7 +17,7 @@ export class searchAsync {
 
 		this._valUserInReg = null;
 
-		this.indexList = new Set();
+		this.indexList = null;
 
 		this.resultRecipes = null;
 
@@ -38,13 +38,13 @@ export class searchAsync {
 
 			ev.preventDefault();
 
-			this.indexList.clear();
+			this.indexList?.clear();
 
 			let res = await this.searchResult();
 
 			if (res.length > 0) {
 
-				this.indexList.add(res);
+				this.indexList = new Set(res);
 				this.resultRecipes = this.Result(this.indexList)
 
 				if (isExciteOrNotEmpty(this.resultRecipes)) HomeController.mainDisplay(this.resultRecipes)
@@ -66,8 +66,8 @@ export class searchAsync {
 		let valInput = this.$searchInput.value
 
 		if (valInput.length >= 3) {
-
-			return this._valUserInReg = new RegExp(`^${valInput}`, "gim");
+			///\bc(oc)\b/gim
+			return this._valUserInReg = new RegExp(`\\b${valInput}\\b`, "gim");
 		}
 		return null;
 
@@ -80,7 +80,7 @@ export class searchAsync {
 
 			this._prototypeSearchModel.forEach(
 				({ name, index }) => {
-					this.descriptionSearch
+					let testIn = name.match(this._valUserInReg)
 					if (name.match(this._valUserInReg)) {
 
 						i.push(index);
@@ -90,7 +90,7 @@ export class searchAsync {
 				}
 			)
 		}
-		console.log('indexList: ', this.indexList.size);
+		console.log('indexList: ', this.indexList?.size);
 		return i
 
 
@@ -107,9 +107,10 @@ export class searchAsync {
 				({ ingredients, index }) => {
 
 					ingredients.forEach(ingredient => {
+						let testIn = ingredient.match(this._valUserInReg)
 						if (ingredient.match(this._valUserInReg)) {
 
-							i.add(index);
+							i.push(index);
 
 						}
 
@@ -129,7 +130,7 @@ export class searchAsync {
 		// await this.nameSearch();
 		// const res = await this.ingredientSearch();
 		const [a, b] = await Promise.all([this.nameSearch(), this.ingredientSearch()]);
-		console.log('indexList: ', this.indexList.size);
+		console.log('indexList: ', this.indexList?.size);
 		return [...a, ...b];
 
 

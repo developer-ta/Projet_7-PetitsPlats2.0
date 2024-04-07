@@ -3,6 +3,7 @@ export const AdvancedSearch = (data) => {
 	ingredientDisplay(data);
 	ustensileDisplay(data);
 	appareilsDisplay(data);
+	recettesQuantityDisplay(data);
 
 }
 
@@ -31,12 +32,18 @@ const ustensileDisplay = (data) => {
 
 const appareilsDisplay = (data) => {
 
-	const appareils_options = document.querySelector('#appareils>.options')
-	appareils_options.innerHTML = ''
+	const $appareils_options = document.querySelector('#appareils>.options')
+	$appareils_options.innerHTML = ''
 	const $ul = document.createElement('ul');
 	data.forEach(el =>
 		$ul.innerHTML += `<li>${el.appliance}</li>`);
-	appareils_options.appendChild($ul);
+	$appareils_options.appendChild($ul);
+}
+const recettesQuantityDisplay = (data) => {
+
+	const $Recipe_quantity = document.querySelector('#Recipe-quantity')
+	$Recipe_quantity.firstElementChild.textContent = `${data.length} recettes`
+
 }
 const nameDisplay = (name) => { }
 

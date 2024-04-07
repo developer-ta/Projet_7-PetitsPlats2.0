@@ -1,8 +1,11 @@
 import { AdvancedSearch } from "./_sectionAdvancedSearch.js"
+import { SectionResult } from "./_sectionResult.js";
 
-export const Main = (data) => {
+export const Main = (dataList) => {
 
-	AdvancedSearch(data);
+	AdvancedSearch(dataList);
+
+	SectionResult(dataList);
 
 
 }
