@@ -34,12 +34,18 @@ export class searchAsync {
 
 		this.$search_btn.addEventListener("click", async (ev) => {
 
-			debugger
+
 
 			ev.preventDefault();
 
-			this.indexList?.clear();
 
+			if (this.$searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
+				HomeController.mainDisplay(this._recipes)
+
+			}
+
+
+			this.indexList?.clear();
 			let res = await this.searchResult();
 
 			if (res.length > 0) {
@@ -53,10 +59,6 @@ export class searchAsync {
 
 
 
-
-
-			console.log('resultRecipes: ', this.resultRecipes);
-
 		})
 	}
 
@@ -66,15 +68,18 @@ export class searchAsync {
 		let valInput = this.$searchInput.value
 
 		if (valInput.length >= 3) {
-			///\bc(oc)\b/gim
-			return this._valUserInReg = new RegExp(`\\b${valInput}\\b`, "gim");
+			///\bc(oc)\b/gim 
+			// new RegExp(`\\b${valInput}\\w+`, "gim");
+			// new RegExp(`\\b${valInput}\\w`, "gim");
+			// new RegExp(`\\b${valInput}`, "gim");
+			return this._valUserInReg = new RegExp(`\\b${valInput}`, "gim");
 		}
 		return null;
 
 	}
 
 	nameSearch = () => {
-		debugger
+
 		let i = []
 		if (this.ValUserInRegExp) {
 
@@ -98,7 +103,7 @@ export class searchAsync {
 
 	ingredientSearch = () => {
 
-		debugger
+
 		let i = []
 		if (this.ValUserInRegExp) {
 

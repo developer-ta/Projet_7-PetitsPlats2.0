@@ -8,13 +8,23 @@ export const AdvancedSearch = (data) => {
 }
 
 const ingredientDisplay = (data) => {
+	debugger;
 
 	const $ingredient_options = document.querySelector('#ingredients>.options')
+
 	$ingredient_options.innerHTML = ''
+
 	const $ul = document.createElement('ul');
-	data.forEach(el =>
-		el.ingredients.forEach(i =>
-			$ul.innerHTML += `<li>${i.ingredient}</li>`));
+	const ingredientList = new Set();
+	data.forEach((el, index) =>
+		el.ingredients.forEach(ing =>
+			ingredientList.add(`<li class='li-ingredient'>${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
+		))
+	Array.from(ingredientList).sort().forEach(i => $ul.innerHTML += i)
+
+	// data.forEach(el =>
+	// 	new Set(el.ingredients).forEach(i =>
+	// 		$ul.innerHTML += `<li>${i.ingredient}</li>`));
 	$ingredient_options.appendChild($ul);
 }
 
@@ -25,7 +35,7 @@ const ustensileDisplay = (data) => {
 	$ustensiles_options.innerHTML = ''
 	const $ul = document.createElement('ul');
 	data.forEach(el =>
-		el.ustensils.forEach(i =>
+		new Set(el.ustensils).forEach(i =>
 			$ul.innerHTML += `<li>${i}</li>`));
 	$ustensiles_options.appendChild($ul);
 }
