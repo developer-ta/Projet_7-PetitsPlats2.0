@@ -1,144 +1,185 @@
  /* header > nav */
  span.col.logo {
- 	font-family: auto;
- 	font-style: unset;
- 	font-size: 50px;
- 	font-weight: bolder;
- 	color: honeydew;
- 	text-shadow: 0px 0px 2px black;
- 	/* text-decoration-color: darkkhaki; */
- 	}
+	font-family: auto;
+	font-style: unset;
+	font-size: 50px;
+	font-weight: bolder;
+	color: honeydew;
+	text-shadow: 0px 0px 2px black;
+}
 
- .bg-image {
- 	background-size: contain;
- 	background-image: url('/assets/Mask group.png');
- 	/* scale: 0.4; */
- 	width: 100%;
- 	height: 600px;
- 	left: 0px;
- 	top: 0px;
- 	background-repeat: no-repeat;
- 	margin: 0;
- }
+.bg-image {
+	background-size: contain;
+	background-image: url('/assets/Mask group.png');
+	/* scale: 0.4; */
+	width: 100%;
+	height: 600px;
+	left: 0px;
+	top: 0px;
+	background-repeat: no-repeat;
+	margin: 0;
+}
 
- .logo {
- 	width: 207px;
- 	height: 25.26px;
- 	animation-timing-function: ease-out;
- 	animation-duration: 300ms;
+.logo {
+	width: 207px;
+	height: 25.26px;
+	animation-timing-function: ease-out;
+	animation-duration: 300ms;
 
- }
-
-
- .row.wrapper {
- 	position: absolute;
+}
 
 
- 	background-color: white;
- 	padding: 0px;
- 	margin: 0px;
- 	border-radius: 10px;
- 	width: 954px;
- 	height: 72px;
- 	top: 406.42px;
- 	left: 243px;
- 	gap: 0px;
-
- }
-
- .input-group.flex-nowrap {
-
- 	position: relative;
-
- 	background-color: white;
- 	padding: 5px;
-
- 	border-radius: inherit;
- 	overflow: hidden;
- 	}
-
- .form-control {
- 	border: 0;
- 	padding-right: 0;
- 	border-radius: inherit;
- }
-
- #addon-wrapping {
-
- 	background-color: black;
- 	color: lightyellow;
-
- 	font-size: xx-large;
- 	}
-
- #addon-wrapping:hover {
- 	background-color: #FFD15B;
- 	color: black;
- }
-
- .row.label-search h1 {
-
- 	/* CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES */
-
- 	position: absolute;
- 	width: 890px;
- 	height: 132px;
- 	left: 275px;
- 	top: 210px;
-
- 	font-family: 'Anton';
- 	font-style: normal;
- 	font-weight: 400;
- 	font-size: 44px;
- 	line-height: 66px;
- 	text-align: center;
-
- 	/* Yellow */
- 	color: #FFD15B;
+.row.wrapper {
+	position: absolute;
 
 
- }
+	background-color: white;
+	padding: 0px;
+	margin: 0px;
+	border-radius: 10px;
+	width: 954px;
+	height: 72px;
+	top: 406.42px;
+	left: 243px;
+	gap: 0px;
 
- .input-group-prepend {
- 	border: 0;
+}
 
- }
+.input-group.flex-nowrap {
 
- #advance_search {
- 	background-color: #EDEDED;
- 	margin: 0;
- }
+	position: relative;
 
- body {
- 	background-color: #EDEDED;
- 	max-width: 1440px;
- }
+	background-color: white;
+	padding: 5px;
 
- #Advanced_search_fields {
- 	justify-content: space-between;
- }
+	border-radius: inherit;
+	overflow: hidden;
+	}
 
- .select.row {
- 	padding-top: 15px;
- }
+.form-control {
+	border: 0;
+	padding-right: 0;
+	border-radius: inherit;
+}
 
- .card {
- 	position: relative;
- 	width: 100%;
- 	height: 731px;
+#addon-wrapping {
 
- 	/* overflow-y: scroll; */
- 	background: #FFFFFF;
- 	box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
- 	border-radius: 21px;
- 	}
-	 .options {
-	 	width: 100%;
-	 	overflow-y: clip;
-	 	height: 315px;
+	background-color: black;
+	color: lightyellow;
 
-	 }
+	font-size: xx-large;
+	}
 
-	 ul {
-	 	list-style: none;
-	 }
+#addon-wrapping:hover {
+	background-color: #FFD15B;
+	color: black;
+}
+
+.row.label-search h1 {
+
+	/* CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES */
+
+	position: absolute;
+	width: 890px;
+	height: 132px;
+	left: 275px;
+	top: 210px;
+
+	font-family: 'Anton';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 44px;
+	line-height: 66px;
+	text-align: center;
+
+	/* Yellow */
+	color: #FFD15B;
+
+
+}
+
+.input-group-prepend {
+	border: 0;
+
+}
+
+#advance_search {
+	background-color: #EDEDED;
+	margin: 0;
+}
+
+body {
+	background-color: #EDEDED;
+	max-width: 1440px;
+}
+
+#Advanced_search_fields {
+	justify-content: space-between;
+}
+
+.select.row {
+	padding-top: 15px;
+}
+
+.card {
+	position: relative;
+	width: 100%;
+	height: 731px;
+
+	/* overflow-y: scroll; */
+	background: #FFFFFF;
+	box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+	border-radius: 21px;
+	}
+
+	.options {
+		width: 100%;
+		overflow-y: clip;
+		height: 315px;
+		display: none;
+
+		align-items: unset;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		width: 100%;
+		}
+
+		.li-ingredient {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		input {
+			border: none;
+		}
+
+		#ingredient-search {
+			outline: lightgray 1px solid;
+			height: 31px;
+
+			display: flex;
+			align-items: center;
+
+		}
+
+		.selected-val {
+			color: gray;
+		}
+
+		.li-ingredient:hover span {
+			border-radius: 50%;
+			background-color: black;
+			color: white;
+			width: 19px;
+			padding-left: 1px;
+			font-weight: normal;
+			cursor: pointer;
+		}
+
+		.li-ingredient:hover {
+			background-color: #FFD15B;
+			font-weight: bold;
+	   }

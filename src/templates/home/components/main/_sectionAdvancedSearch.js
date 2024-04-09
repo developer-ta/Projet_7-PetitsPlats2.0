@@ -1,8 +1,8 @@
 export const AdvancedSearch = (data) => {
 
 	ingredientDisplay(data);
-	ustensileDisplay(data);
 	appareilsDisplay(data);
+	ustensileDisplay(data);
 	recettesQuantityDisplay(data);
 
 }
@@ -12,41 +12,89 @@ const ingredientDisplay = (data) => {
 
 	const $ingredient_options = document.querySelector('#ingredients>.options')
 
+	const $display_options_span = document.querySelector('#ingredients>.select>span')
+
+	$ingredient_options.style.display = 'flex'
+
+	//bind event display ingredients
+	$display_options_span.addEventListener('click', (ev) => {
+		debugger
+		ev.stopPropagation();
+
+		$ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
+	})
+
+
 	$ingredient_options.innerHTML = ''
 
 	const $ul = document.createElement('ul');
+
 	const ingredientList = new Set();
-	data.forEach((el, index) =>
+
+	data.forEach((el) =>
 		el.ingredients.forEach(ing =>
 			ingredientList.add(`<li class='li-ingredient'>${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
 		))
 	Array.from(ingredientList).sort().forEach(i => $ul.innerHTML += i)
 
-	// data.forEach(el =>
-	// 	new Set(el.ingredients).forEach(i =>
-	// 		$ul.innerHTML += `<li>${i.ingredient}</li>`));
+
 	$ingredient_options.appendChild($ul);
 }
 
 
 const ustensileDisplay = (data) => {
-
+	debugger;
 	const $ustensiles_options = document.querySelector('#ustensiles>.options')
+
+	const $display_options_span = document.querySelector('#ustensiles>.select>span')
+
+	$ustensiles_options.style.display = 'flex'
+
+	//bind event display ingredients
+	$display_options_span.addEventListener('click', (ev) => {
+		debugger
+		ev.stopPropagation();
+
+		$ustensiles_options.style.display = $ustensiles_options.style.display !== 'flex' ? 'flex' : 'none';
+	})
+
 	$ustensiles_options.innerHTML = ''
 	const $ul = document.createElement('ul');
-	data.forEach(el =>
-		new Set(el.ustensils).forEach(i =>
-			$ul.innerHTML += `<li>${i}</li>`));
+	const ustensileList = new Set();
+	data.forEach((el) =>
+		el.ustensils.forEach(ust =>
+			ustensileList.add(`<li class='li-ingredient'>${(ust[0] + ust.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
+		))
+	Array.from(ustensileList).sort().forEach(i => $ul.innerHTML += i)
+
 	$ustensiles_options.appendChild($ul);
 }
 
 const appareilsDisplay = (data) => {
-
+	debugger
 	const $appareils_options = document.querySelector('#appareils>.options')
+
+	const $display_options_span = document.querySelector('#appareils>.select>span')
+
+	$appareils_options.style.display = 'flex'
+
+	//bind event display ingredients
+	$display_options_span.addEventListener('click', (ev) => {
+		debugger
+		ev.stopPropagation();
+
+		$appareils_options.style.display = $appareils_options.style.display !== 'flex' ? 'flex' : 'none';
+	})
+
+
 	$appareils_options.innerHTML = ''
 	const $ul = document.createElement('ul');
-	data.forEach(el =>
-		$ul.innerHTML += `<li>${el.appliance}</li>`);
+	const applianceList = new Set();
+	data.forEach((el) =>
+		applianceList.add(`<li class='li-ingredient'>${(el.appliance[0] + el.appliance.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
+	)
+	Array.from(applianceList).sort().forEach(i => $ul.innerHTML += i)
+
 	$appareils_options.appendChild($ul);
 }
 const recettesQuantityDisplay = (data) => {
