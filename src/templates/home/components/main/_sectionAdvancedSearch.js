@@ -13,8 +13,10 @@ const ingredientDisplay = (data) => {
 	const $ingredient_options = document.querySelector('#ingredients>.options')
 
 	const $display_options_span = document.querySelector('#ingredients>.select>span')
+	const $ingredient_search = document.querySelector('#ingredient-search')
 
 	$ingredient_options.style.display = 'flex'
+	$ingredient_search.style.display = 'flex'
 
 	//bind event display ingredients
 	$display_options_span.addEventListener('click', (ev) => {
@@ -48,7 +50,10 @@ const ustensileDisplay = (data) => {
 
 	const $display_options_span = document.querySelector('#ustensiles>.select>span')
 
+	const $ustensile_search = document.querySelector('#ustensile-search')
+
 	$ustensiles_options.style.display = 'flex'
+	$ustensile_search.style.display = 'flex'
 
 	//bind event display ingredients
 	$display_options_span.addEventListener('click', (ev) => {
@@ -75,8 +80,10 @@ const appareilsDisplay = (data) => {
 	const $appareils_options = document.querySelector('#appareils>.options')
 
 	const $display_options_span = document.querySelector('#appareils>.select>span')
+	const $appareil_search = document.querySelector('#appareil-search')
 
 	$appareils_options.style.display = 'flex'
+	$appareil_search.style.display = 'flex'
 
 	//bind event display ingredients
 	$display_options_span.addEventListener('click', (ev) => {

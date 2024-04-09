@@ -127,6 +127,8 @@ body {
 
 #Advanced_search_fields {
 	justify-content: space-between;
+margin-top: 10px;
+margin-bottom: 53px;
 }
 
 .select.row {
@@ -162,19 +164,24 @@ body {
 		.li-item {
 			display: flex;
 			justify-content: space-between;
+			flex-direction: row;
+			align-items: center;
 		}
 
 		input {
 			border: none;
+			width: 87%;
+			outline: none;
 		}
 
-		#ingredient-search {
+		#ingredient-search,
+		#appareil-search,
+		#ustensile-search {
 			outline: lightgray 1px solid;
 			height: 31px;
-
-			display: flex;
+			display: none;
+			width: 100%;
 			align-items: center;
-
 		}
 
 		.selected-val {
@@ -185,28 +192,31 @@ body {
 			border-radius: 50%;
 			background-color: black;
 			color: white;
-			width: 19px;
-			padding-left: 1px;
+			width: 16px;
 			font-weight: normal;
 			cursor: pointer;
+			height: 17px;
+			display: flex;
+			align-items: center;
 		}
 
 		.li-item:hover {
 			background-color: #FFD15B;
 			font-weight: bold;
 	   }
-	   .bi.bi-x {
-	   	display: none;
-	   }
+	   /* .bi.bi-x {
+	   
+	   	color: black;
+	   } */
 
 	   .li-item:hover span .bi.bi-x {
 	   	display: block;
 	   }
 
 	   .row-cols-2 {
-	   	position: fixed;
-	   	left: 5%;
-	   	top: 5%;
+	   	position: absolute;
+	   	left: 7%;
+	   	top: 7%;
 	   }
 
 	   html {
@@ -216,4 +226,33 @@ body {
 	   	display: flex;
 	   	justify-content: center;
 	   	background-color: black;
+	   }
+	   #labelSearch {
+	   	width: 158px;
+	   	height: 50px;
+
+	   	background: #FFD15B;
+	   	border-radius: 10px;
+	   	font-size: larger;
+	   	display: flex;
+	   	flex-direction: row;
+	   	justify-content: space-between;
+	   	align-items: center;
+	   }
+
+
+	   #labelSearch>span.bi_x {
+	   	color: black;
+	   	display: block;
+	   	font-size: large;
+	   	text-align: center;
+	   }
+
+	   .li-item span .bi.bi-x {
+	   	display: none;
+	   }
+
+	   .card-img-top {
+	   	object-fit: cover;
+	   	height: 219px;
 	   }
