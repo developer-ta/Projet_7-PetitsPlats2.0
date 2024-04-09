@@ -12,12 +12,16 @@
 	background-size: contain;
 	background-image: url('/assets/Mask group.png');
 	/* scale: 0.4; */
-	width: 100%;
+	width: 1440px;
 	height: 600px;
 	left: 0px;
 	top: 0px;
 	background-repeat: no-repeat;
 	margin: 0;
+	background-size: cover;
+	max-width: 1440px;
+	display: flex;
+	justify-content: center;
 }
 
 .logo {
@@ -37,7 +41,7 @@
 	padding: 0px;
 	margin: 0px;
 	border-radius: 10px;
-	width: 954px;
+	width: 70%;
 	height: 72px;
 	top: 406.42px;
 	left: 243px;
@@ -54,6 +58,7 @@
 
 	border-radius: inherit;
 	overflow: hidden;
+	width: 100%;
 	}
 
 .form-control {
@@ -80,7 +85,7 @@
 	/* CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES */
 
 	position: absolute;
-	width: 890px;
+	width: 66%;
 	height: 132px;
 	left: 275px;
 	top: 210px;
@@ -110,6 +115,13 @@
 
 body {
 	background-color: #EDEDED;
+	display: flex;
+
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	padding: 0;
 	max-width: 1440px;
 }
 
@@ -147,7 +159,7 @@ body {
 		width: 100%;
 		}
 
-		.li-ingredient {
+		.li-item {
 			display: flex;
 			justify-content: space-between;
 		}
@@ -169,7 +181,7 @@ body {
 			color: gray;
 		}
 
-		.li-ingredient:hover span {
+		.li-item:hover span {
 			border-radius: 50%;
 			background-color: black;
 			color: white;
@@ -179,7 +191,29 @@ body {
 			cursor: pointer;
 		}
 
-		.li-ingredient:hover {
+		.li-item:hover {
 			background-color: #FFD15B;
 			font-weight: bold;
+	   }
+	   .bi.bi-x {
+	   	display: none;
+	   }
+
+	   .li-item:hover span .bi.bi-x {
+	   	display: block;
+	   }
+
+	   .row-cols-2 {
+	   	position: fixed;
+	   	left: 5%;
+	   	top: 5%;
+	   }
+
+	   html {
+	   	margin: 0;
+	   	padding: 0;
+
+	   	display: flex;
+	   	justify-content: center;
+	   	background-color: black;
 	   }

@@ -33,7 +33,7 @@ const ingredientDisplay = (data) => {
 
 	data.forEach((el) =>
 		el.ingredients.forEach(ing =>
-			ingredientList.add(`<li class='li-ingredient'>${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
+			ingredientList.add(`<li class='li-item'>${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
 		))
 	Array.from(ingredientList).sort().forEach(i => $ul.innerHTML += i)
 
@@ -63,7 +63,7 @@ const ustensileDisplay = (data) => {
 	const ustensileList = new Set();
 	data.forEach((el) =>
 		el.ustensils.forEach(ust =>
-			ustensileList.add(`<li class='li-ingredient'>${(ust[0] + ust.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
+			ustensileList.add(`<li class='li-item'>${(ust[0] + ust.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
 		))
 	Array.from(ustensileList).sort().forEach(i => $ul.innerHTML += i)
 
@@ -91,7 +91,7 @@ const appareilsDisplay = (data) => {
 	const $ul = document.createElement('ul');
 	const applianceList = new Set();
 	data.forEach((el) =>
-		applianceList.add(`<li class='li-ingredient'>${(el.appliance[0] + el.appliance.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
+		applianceList.add(`<li class='li-item'>${(el.appliance[0] + el.appliance.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
 	)
 	Array.from(applianceList).sort().forEach(i => $ul.innerHTML += i)
 
