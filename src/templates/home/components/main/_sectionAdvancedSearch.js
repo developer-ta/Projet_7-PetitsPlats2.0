@@ -11,6 +11,7 @@ const ingredientDisplay = (data) => {
 	debugger;
 
 	const $ingredient_options = document.querySelector('#ingredients>.options')
+	const $ingredient = document.querySelector('#ingredients')
 
 	const $display_options_span = document.querySelector('#ingredients>.select>span')
 	const $ingredient_search = document.querySelector('#ingredient-search')
@@ -24,6 +25,10 @@ const ingredientDisplay = (data) => {
 		ev.stopPropagation();
 
 		$ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
+		$ingredient_search.style.display = $ingredient_search.style.display !== 'flex' ? 'flex' : 'none';
+		$ingredient.style.height = "fit-content"
+		$display_options_span.firstChild.className =
+			$display_options_span.firstChild.className !== "bi bi-chevron-up" ? "bi bi-chevron-up" : "bi bi-chevron-down";
 	})
 
 
@@ -47,6 +52,7 @@ const ingredientDisplay = (data) => {
 const ustensileDisplay = (data) => {
 	debugger;
 	const $ustensiles_options = document.querySelector('#ustensiles>.options')
+	const $ustensile = document.querySelector('#ustensiles')
 
 	const $display_options_span = document.querySelector('#ustensiles>.select>span')
 
@@ -61,6 +67,11 @@ const ustensileDisplay = (data) => {
 		ev.stopPropagation();
 
 		$ustensiles_options.style.display = $ustensiles_options.style.display !== 'flex' ? 'flex' : 'none';
+		$ustensile_search.style.display = $ustensile_search.style.display !== 'flex' ? 'flex' : 'none';
+		$ustensile.style.height = "fit-content"
+		$display_options_span.firstChild.className =
+			$display_options_span.firstChild.className !== "bi bi-chevron-up" ? "bi bi-chevron-up" : "bi bi-chevron-down";
+
 	})
 
 	$ustensiles_options.innerHTML = ''
@@ -78,6 +89,7 @@ const ustensileDisplay = (data) => {
 const appareilsDisplay = (data) => {
 	debugger
 	const $appareils_options = document.querySelector('#appareils>.options')
+	const $appareil = document.querySelector('#appareils')
 
 	const $display_options_span = document.querySelector('#appareils>.select>span')
 	const $appareil_search = document.querySelector('#appareil-search')
@@ -91,6 +103,10 @@ const appareilsDisplay = (data) => {
 		ev.stopPropagation();
 
 		$appareils_options.style.display = $appareils_options.style.display !== 'flex' ? 'flex' : 'none';
+		$appareil_search.style.display = $appareil_search.style.display !== 'flex' ? 'flex' : 'none';
+		$appareil.style.height = "fit-content"
+		$display_options_span.firstChild.className =
+			$display_options_span.firstChild.className !== "bi bi-chevron-up" ? "bi bi-chevron-up" : "bi bi-chevron-down";
 	})
 
 
@@ -111,7 +127,7 @@ const recettesQuantityDisplay = (data) => {
 	$Recipe_quantity.firstElementChild.textContent = `${data.length} recettes`
 
 }
-const nameDisplay = (name) => { }
+const chooseValDisplay = (name) => { }
 
 const ingredientSearch = () => { }
 

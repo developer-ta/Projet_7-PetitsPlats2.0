@@ -40,7 +40,8 @@ export class searchAsync {
 
 
 			if (this.$searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
-				HomeController.mainDisplay(this._recipes)
+				HomeController.mainDisplay(this._recipes);
+				return;
 
 			}
 
@@ -129,14 +130,33 @@ export class searchAsync {
 		return i
 	}
 
-	descriptionSearch(strIndice) { }
+	descriptionSearch() {
+		let i = []
+		if (this.ValUserInRegExp) {
+
+			this._prototypeSearchModel.forEach(
+				({ description, index }) => {
+					//let testIn = description.match(this._valUserInReg)
+					if (description.match(this._valUserInReg)) {
+
+						i.push(index);
+
+					}
+
+				}
+			)
+		}
+
+		return i
+	}
 
 	searchResult = async () => {
 		// await this.nameSearch();
 		// const res = await this.ingredientSearch();
-		const [a, b] = await Promise.all([this.nameSearch(), this.ingredientSearch()]);
+		const [name, ing, desc] = await Promise
+			.all([this.nameSearch(), this.ingredientSearch(), this.descriptionSearch()]);
 		console.log('indexList: ', this.indexList?.size);
-		return [...a, ...b];
+		return [...name, ...ing, ...desc];
 
 
 
