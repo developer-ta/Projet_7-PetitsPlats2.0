@@ -104,6 +104,7 @@ const appareilsDisplay = (data) => {
 
 	$appareils_options.appendChild($ul);
 }
+
 const recettesQuantityDisplay = (data) => {
 
 	const $Recipe_quantity = document.querySelector('#Recipe-quantity')

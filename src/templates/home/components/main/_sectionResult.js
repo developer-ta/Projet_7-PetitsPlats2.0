@@ -127,7 +127,7 @@ const setTableData = (ingredients) => {
 		// 	  },
 		ingredientData += `<tr>
 				<td>${ingredient}<br>
-				<span class='quantity'>${quantity} ${unit}</span>
+				<span class='quantity'>${quantity ?? ''} ${unit ?? ''}</span>
 				</td>`;
 
 		if (index + 1 < ingredients.length) {
@@ -135,7 +135,7 @@ const setTableData = (ingredients) => {
 			const { ingredient, quantity, unit } = ingredients[index];
 			ingredientData +=
 				`<td>${ingredient}<br>
-				<span class='quantity'>${quantity} ${unit}</span>
+				<span class='quantity'>${quantity ?? ''} ${unit ?? ''}</span>
 				</td>
 			</tr>`;
 		}

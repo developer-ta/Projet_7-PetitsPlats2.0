@@ -9,19 +9,19 @@
 }
 
 .bg-image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
 	background-size: contain;
 	background-image: url('/assets/Mask group.png');
-	/* scale: 0.4; */
 	width: 1440px;
 	height: 600px;
-	left: 0px;
-	top: 0px;
 	background-repeat: no-repeat;
 	margin: 0;
 	background-size: cover;
 	max-width: 1440px;
-	display: flex;
-	justify-content: center;
 }
 
 .logo {
@@ -31,22 +31,22 @@
 	animation-duration: 300ms;
 
 }
-
+.bi.bi-chevron-up {
+	cursor: pointer;
+}
 
 .row.wrapper {
-	position: absolute;
-
 
 	background-color: white;
 	padding: 0px;
 	margin: 0px;
 	border-radius: 10px;
-	width: 70%;
+	width: 85%;
 	height: 72px;
-	top: 406.42px;
-	left: 243px;
 	gap: 0px;
-
+	max-width: 1320px;
+	justify-content: center;
+	align-items: center;
 }
 
 .input-group.flex-nowrap {
@@ -84,11 +84,8 @@
 
 	/* CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES */
 
-	position: absolute;
+	position: relative;
 	width: 66%;
-	height: 132px;
-	left: 275px;
-	top: 210px;
 
 	font-family: 'Anton';
 	font-style: normal;
@@ -101,6 +98,8 @@
 	color: #FFD15B;
 
 
+	justify-content: center;
+	align-items: center;
 }
 
 .input-group-prepend {
@@ -182,6 +181,7 @@ margin-bottom: 53px;
 			display: none;
 			width: 100%;
 			align-items: center;
+			margin-bottom: 15px;
 		}
 
 		.selected-val {
@@ -214,10 +214,10 @@ margin-bottom: 53px;
 	   }
 
 	   .row-cols-2 {
-	   	position: absolute;
-	   	left: 7%;
-	   	top: 7%;
-	   }
+		position: relative;
+		right: 35%;
+		top: -25%;
+		}
 
 	   html {
 	   	margin: 0;
@@ -255,4 +255,18 @@ margin-bottom: 53px;
 	   .card-img-top {
 	   	object-fit: cover;
 	   	height: 219px;
+	   }
+	   .bi.bi-search {
+	   	cursor: pointer;
+	   }
+
+	   .quantity {
+	   	opacity: 55%;
+	   }
+
+	   .row.label-search {
+	   	justify-content: center;
+	   	align-items: baseline;
+	   	height: fit-content;
+	   	width: fit-content;
 	   }
