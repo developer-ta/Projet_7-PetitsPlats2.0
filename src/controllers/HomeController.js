@@ -1,4 +1,4 @@
-import { Main } from "../templates/home/components/main/main.js";
+import { Main } from "../templates/home/components/main/Main.js";
 
 export class HomeController {
 	constructor () {

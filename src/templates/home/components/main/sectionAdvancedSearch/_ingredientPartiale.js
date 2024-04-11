@@ -3,20 +3,17 @@ const $ingredient_options = document.querySelector('#ingredients>.options')
 const $ingredient = document.querySelector('#ingredients')
 
 const $display_options_span = document.querySelector('#ingredients>.select>span')
+
 const $ingredient_search = document.querySelector('#ingredient-search')
 
-
-
+const $search_vals = document.querySelectorAll('.search-val')
 
 
 export const ingredientDisplay = (data) => {
-	debugger;
+
 
 	$ingredient_options.style.display = 'flex'
 	$ingredient_search.style.display = 'flex'
-
-	//bind event display ingredients
-	bindEvent();
 
 	// display 
 	$ingredient_options.innerHTML = ''
@@ -33,9 +30,14 @@ export const ingredientDisplay = (data) => {
 
 
 	$ingredient_options.appendChild($ul);
+
+	//bind event display ingredients
+	bindEvent();
 }
 
-const ingredientSearch = () => { }
+const ingredientSearch = () => {
+	$ingredient_search.value;
+}
 
 
 const OptionsSpan = () => { }
@@ -44,6 +46,8 @@ const OptionsSpan = () => { }
 
 const bindEvent = () => {
 	optionsSpanClick();
+	searchValSpanClick();
+
 }
 
 //event func
@@ -58,4 +62,35 @@ const optionsSpanClick = () => {
 		$display_options_span.firstChild.className =
 			$display_options_span.firstChild.className !== "bi bi-chevron-up" ? "bi bi-chevron-up" : "bi bi-chevron-down";
 	})
+}
+
+const searchValSpanClick = () => {
+
+	$search_vals.forEach(el => el.addEventListener('click', ev => {
+		debugger
+		let searchVal = '';
+		let foundLis = '';
+		const ingredientList = new Set();
+		const lis = document.querySelectorAll(".li-item");
+		if (ev.target.tagName == 'SPAN')
+			searchVal = ev.target.parentElement.firstElementChild.value;
+
+		else if (ev.target.tagName == 'I')
+			searchVal = ev.target.parentElement.parentElement.firstElementChild.value;
+
+		lis.forEach(el =>
+
+			el.textContent.includes(`${searchVal}`)
+				? ingredientList.add(`<li class='li-item'>${el.innerHTML} </li>`)
+				: '');
+		// display 
+		foundLis = Array.from(ingredientList).sort()
+		if (foundLis.length > 0) {
+			$ingredient_options.style.height = 'fit-content'
+			$ingredient_options.firstElementChild.innerHTML = '';
+			foundLis.forEach(el => $ingredient_options.firstElementChild.innerHTML += el);
+
+		}
+	})
+	)
 }
