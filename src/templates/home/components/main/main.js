@@ -1,5 +1,5 @@
-import { AdvancedSearch } from "./_sectionAdvancedSearch.js"
-import { SectionResult } from "./_sectionResult.js";
+import { AdvancedSearch } from "./sectionAdvancedSearch/AdvancedSearch.js"
+import { SectionResult } from "./sectionResult/SectionResult.js";
 
 export const Main = (dataList) => {
 
