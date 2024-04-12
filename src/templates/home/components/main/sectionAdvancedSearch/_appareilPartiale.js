@@ -7,8 +7,8 @@ export const appareilsDisplay = (data) => {
 	const $display_options_span = document.querySelector('#appareils>.select>span')
 	const $appareil_search = document.querySelector('#appareil-search')
 
-	$appareils_options.style.display = 'flex'
-	$appareil_search.style.display = 'flex'
+	// $appareils_options.style.display = 'flex'
+	// $appareil_search.style.display = 'flex'
 
 	//bind event display ingredients
 	$display_options_span.addEventListener('click', (ev) => {

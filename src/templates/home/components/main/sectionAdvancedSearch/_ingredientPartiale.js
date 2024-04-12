@@ -11,12 +11,8 @@ const $search_vals = document.querySelectorAll('.search-val')
 
 
 
-
 export const ingredientDisplay = (data) => {
 
-
-	$ingredient_options.style.display = 'flex'
-	$ingredient_search.style.display = 'flex'
 
 	// display 
 	$ingredient_options.innerHTML = ''
@@ -30,8 +26,8 @@ export const ingredientDisplay = (data) => {
 			const $li = document.createElement('li');
 			$li.className = 'li-item';
 			$li.idElement = el.id;
-			$li.innerHTML += `${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} 
-			<span><i class="bi bi-x"></i></span>`;
+			$li.innerHTML += `${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} `
+
 			ingredientList.push($li)
 		}
 		))

@@ -15,12 +15,6 @@ export const AdvancedSearch = (data) => {
 }
 
 
-
-
-
-
-
-
 const recettesQuantityDisplay = (data) => {
 
 	const $Recipe_quantity = document.querySelector('#Recipe-quantity')

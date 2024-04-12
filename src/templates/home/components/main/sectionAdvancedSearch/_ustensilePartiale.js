@@ -10,8 +10,8 @@ export const ustensileDisplay = (data) => {
 
 	const $ustensile_search = document.querySelector('#ustensile-search')
 
-	$ustensiles_options.style.display = 'flex'
-	$ustensile_search.style.display = 'flex'
+	// $ustensiles_options.style.display = 'flex'
+	// $ustensile_search.style.display = 'flex'
 
 	//bind event display ingredients
 	$display_options_span.addEventListener('click', (ev) => {

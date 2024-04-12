@@ -52,13 +52,13 @@ const cardRecipeTemplate = (data) => {
 
 	const $tbs = setTableData(ingredients);
 
-	const card_html = `<div class="col-3">
+	const card_html = `<div class="col-2">
 	<div class="card h-100">
 		<img src="/assets/Photos P7 JS Les petits plats/${image}" class="card-img-top" alt="...">
 		<div class="card-body">
 			<h5 class="card-title">${name}</h5>
 			<h6 class="card-title">RECETTE</h6>
-			<p class="card-text">${description}</p>
+			<p class="card-text">${description.slice(0, 202)}</p>
 		</div>
 		<div class="card-footer container m-0 p-0 border-0">
 			<table class="table border-white ">

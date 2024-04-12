@@ -1,294 +1,308 @@
  /* header > nav */
  span.col.logo {
- 	font-family: auto;
- 	font-style: unset;
- 	font-size: 50px;
- 	font-weight: bolder;
- 	color: honeydew;
- 	text-shadow: 0px 0px 2px black;
- 	}
-
- .bg-image {
- 	display: flex;
- 	justify-content: center;
- 	align-items: center;
- 	flex-direction: column;
-
- 	background-size: contain;
- 	background-image: url('/assets/Mask group.png');
- 	width: 1440px;
- 	height: 600px;
- 	background-repeat: no-repeat;
- 	margin: 0;
- 	background-size: cover;
- 	max-width: 1440px;
- 	}
-
- .logo {
- 	width: 207px;
- 	height: 25.26px;
- 	animation-timing-function: ease-out;
- 	animation-duration: 300ms;
-
- }
-
- .bi.bi-chevron-up {
- 	cursor: pointer;
- }
-
- .row.wrapper {
-
- 	background-color: white;
- 	padding: 0px;
- 	margin: 0px;
- 	border-radius: 10px;
- 	width: 85%;
- 	height: 72px;
- 	gap: 0px;
- 	max-width: 1320px;
- 	justify-content: center;
- 	align-items: center;
- 	}
-
- .input-group.flex-nowrap {
-
- 	position: relative;
-
- 	background-color: white;
- 	padding: 5px;
-
- 	border-radius: inherit;
- 	overflow: hidden;
- 	width: 100%;
- 	}
-
- .form-control {
- 	border: 0;
- 	padding-right: 0;
- 	border-radius: inherit;
- }
-
- #addon-wrapping {
-
- 	background-color: black;
- 	color: lightyellow;
-
- 	font-size: xx-large;
- 	}
-
- #addon-wrapping:hover {
- 	background-color: #FFD15B;
- 	color: black;
- }
-
- .row.label-search h1 {
-
- 	/* CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES */
-
- 	position: relative;
- 	width: 66%;
-
- 	font-family: 'Anton';
- 	font-style: normal;
- 	font-weight: 400;
- 	font-size: 44px;
- 	line-height: 66px;
- 	text-align: center;
-
- 	/* Yellow */
- 	color: #FFD15B;
-
-
- 	justify-content: center;
- 	align-items: center;
- 	}
-
- .input-group-prepend {
- 	border: 0;
-
- }
-
- #advance_search {
- 	background-color: #EDEDED;
- 	margin: 0;
- }
-
- body {
- 	background-color: #EDEDED;
- 	display: flex;
-
- 	flex-direction: column;
- 	justify-content: center;
- 	align-items: center;
-
- 	padding: 0;
- 	max-width: 1440px;
- 	}
-
- #Advanced_search_fields {
- 	justify-content: space-between;
- 	margin-top: 10px;
- 	margin-bottom: 20px;
- }
-
- .select.row {
-	padding: 18px;
+	font-family: auto;
+	font-style: unset;
+	font-size: 50px;
+	font-weight: bolder;
+	color: honeydew;
+	text-shadow: 0px 0px 2px black;
 	}
- .card {
+
+.bg-image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	background-size: contain;
+	background-image: url('/assets/Mask group.png');
+	width: 1440px;
+	height: 600px;
+	background-repeat: no-repeat;
+	margin: 0;
+	background-size: cover;
+	max-width: 1440px;
+	}
+
+.logo {
+	width: 207px;
+	height: 25.26px;
+	animation-timing-function: ease-out;
+	animation-duration: 300ms;
+
+}
+
+.bi.bi-chevron-up {
+	cursor: pointer;
+}
+
+.row.wrapper {
+
+	background-color: white;
+	padding: 0px;
+	margin: 0px;
+	border-radius: 10px;
+	width: 85%;
+	height: 72px;
+	gap: 0px;
+	max-width: 1320px;
+	justify-content: center;
+	align-items: center;
+	}
+
+.input-group.flex-nowrap {
+
 	position: relative;
+
+	background-color: white;
+	padding: 5px;
+
+	border-radius: inherit;
+	overflow: hidden;
 	width: 100%;
+	}
+
+.form-control {
+	border: 0;
+	padding-right: 0;
+	border-radius: inherit;
+}
+
+#addon-wrapping {
+
+	background-color: black;
+	color: lightyellow;
+
+	font-size: xx-large;
+	}
+
+#addon-wrapping:hover {
+	background-color: #FFD15B;
+	color: black;
+}
+
+.row.label-search h1 {
+
+	/* CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES */
+
+	position: relative;
+	width: 66%;
+
+	font-family: 'Anton';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 44px;
+	line-height: 66px;
+	text-align: center;
+
+	/* Yellow */
+	color: #FFD15B;
+
+
+	justify-content: center;
+	align-items: center;
+	}
+
+.input-group-prepend {
+	border: 0;
+
+}
+#advance_search {
+	background-color: #EDEDED;
+	margin: 30px;
+	padding: 30px;
+	width: 100%;
+	max-width: 1440px;
+	}
+
+body {
+	background-color: #EDEDED;
+	display: flex;
+
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	padding: 0;
+	max-width: 1440px;
+	}
+
+#Advanced_search_fields {
+	justify-content: space-between;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin: 0;
+}
+
+.select.row {
+	padding: 18px;
+}
+
+.card {
+	position: relative;
+	width: 93%;
 	height: 731px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
 	border-radius: 20px;
 	overflow: clip;
+}
+.card-body {
+	height: 12rem;
+}
+
+#search_result>.col-2 {
+	margin-top: 45px;
+}
+
+.card-footer.container.m-0.p-0.border-0 {
+	height: 255px;
+}
+p {
+	margin: 0;
+	padding: 0;
 	}
-	p {
-		margin: 0;
 
-	   }
- .options {
- 	width: 100%;
- 	overflow-y: clip;
- 	height: 315px;
- 	display: none;
+	  .options {
+	  	width: 100%;
+	  	overflow-y: clip;
+	  	height: 315px;
+	  	display: none;
 
- 	align-items: unset;
- }
+	align-items: unset;
+	}
 
- ul {
- 	list-style: none;
- 	padding: 0;
- 	width: 100%;
- }
+ul {
+	list-style: none;
+	padding: 0;
+	width: 100%;
+}
 
- .li-item {
- 	display: flex;
- 	justify-content: space-between;
- 	flex-direction: row;
- 	align-items: center;
- }
+.li-item {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+}
 
- input {
- 	border: none;
- 	width: 87%;
- 	outline: none;
- }
+input {
+	border: none;
+	width: 87%;
+	outline: none;
+}
 
- #ingredient-search,
- #appareil-search,
- #ustensile-search {
- 	outline: lightgray 1px solid;
- 	height: 31px;
- 	display: none;
- 	width: 100%;
- 	align-items: center;
- 	margin-bottom: 15px;
- }
+#ingredient-search,
+#appareil-search,
+#ustensile-search {
+	outline: lightgray 1px solid;
+	height: 31px;
+	display: none;
+	width: 100%;
+	align-items: center;
+	margin-bottom: 15px;
+}
 
- .selected-val {
- 	color: gray;
- }
+.selected-val {
+	color: gray;
+}
 
- .li-item:hover span {
- 	border-radius: 50%;
- 	background-color: black;
- 	color: white;
- 	width: 16px;
- 	font-weight: normal;
- 	cursor: pointer;
- 	height: 17px;
- 	display: flex;
- 	align-items: center;
- }
+.li-item:hover span {
+	border-radius: 50%;
+	background-color: black;
+	color: white;
+	width: 16px;
+	font-weight: normal;
+	cursor: pointer;
+	height: 17px;
+	display: flex;
+	align-items: center;
+}
 
- .li-item:hover {
- 	background-color: #FFD15B;
- 	font-weight: bold;
- }
+.li-item:hover {
+	background-color: #FFD15B;
+	font-weight: bold;
+}
 
- .li-item:hover span .bi.bi-x {
- 	display: flex;
- }
+.li-item:hover span .bi.bi-x {
+	display: flex;
+}
 
- .row-cols-2 {
- 	position: relative;
- 	right: 35%;
- 	top: -25%;
- }
+.row-cols-2 {
+	position: relative;
+	right: 35%;
+	top: -25%;
+}
 
- html {
- 	margin: 0;
- 	padding: 0;
+html {
+	margin: 0;
+	padding: 0;
 
- 	display: flex;
- 	justify-content: center;
- 	background-color: black;
- 	}
+	display: flex;
+	justify-content: center;
+	background-color: black;
+	}
 
- #labelSearch {
- 	width: 158px;
- 	height: 50px;
-
- 	background: #FFD15B;
- 	border-radius: 10px;
- 	font-size: larger;
- 	display: flex;
- 	flex-direction: row;
- 	justify-content: space-between;
- 	align-items: center;
- 	}
+	#labelSearch {
+		width: 158px;
+		height: 50px;
+		background: #FFD15B;
+		border-radius: 10px;
+		font-size: larger;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		margin: 25px 23px;
+		padding: 0;
+	}
 
 
- #labelSearch>span.bi_x {
- 	color: black;
- 	display: block;
- 	font-size: large;
- 	text-align: center;
- }
+#labelSearch>span.bi_x {
+	color: black;
+	display: block;
+	font-size: large;
+	text-align: center;
+}
 
- .li-item span .bi.bi-x {
- 	display: none;
- }
+.li-item span .bi.bi-x {
+	display: none;
+}
 
- .card-img-top {
- 	object-fit: cover;
-	 height: 270px;
- }
+.card-img-top {
+	object-fit: cover;
+	height: 270px;
+}
 
- .bi.bi-search {
- 	cursor: pointer;
- }
+.bi.bi-search {
+	cursor: pointer;
+}
 
- .quantity {
- 	opacity: 55%;
- }
+.quantity {
+	opacity: 55%;
+}
 
- .row.label-search {
- 	justify-content: center;
- 	align-items: baseline;
- 	height: fit-content;
- 	width: fit-content;
- }
-
- h3 {
- 	font-size: xx-large;
- 	font-weight: bolder;
- }
-#ingredients {
+.row.label-search {
+	justify-content: center;
+	align-items: baseline;
 	height: fit-content;
+	width: fit-content;
+}
+
+h3 {
+	font-size: xx-large;
+	font-weight: bolder;
+}
+#ingredients {
+    height: fit-content;
+    width: 20%;
 }
 
 #appareils {
-	height: fit-content;
+    height: fit-content;
+    width: 20%;
 }
 
 #ustensiles {
-	height: fit-content;
-}
-.col-3 {
-
-	margin-top: 66px;
-	padding-left: 0;
-	padding-right: 55px;
-}
+    height: fit-content;
+    width: 20%;
+    }
