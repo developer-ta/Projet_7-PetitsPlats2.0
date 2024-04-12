@@ -206,13 +206,8 @@
  	font-weight: bold;
  }
 
- /* .bi.bi-x {
-	   
-	   	color: black;
-	   } */
-
  .li-item:hover span .bi.bi-x {
- 	display: block;
+ 	display: flex;
  }
 
  .row-cols-2 {
