@@ -9,6 +9,9 @@ const $ingredient_search = document.querySelector('#ingredient-search')
 const $search_vals = document.querySelectorAll('.search-val')
 
 
+
+
+
 export const ingredientDisplay = (data) => {
 
 
@@ -20,19 +23,31 @@ export const ingredientDisplay = (data) => {
 
 	const $ul = document.createElement('ul');
 
-	const ingredientList = new Set();
+	const ingredientList = [];
 
 	data.forEach((el) =>
-		el.ingredients.forEach(ing =>
-			ingredientList.add(`<li class='li-item'>${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
+		el.ingredients.forEach(ing => {
+			const $li = document.createElement('li');
+			$li.className = 'li-item';
+			$li.idElement = el.id;
+			$li.innerHTML += `${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} 
+			<span><i class="bi bi-x"></i></span>`;
+			ingredientList.push($li)
+		}
 		))
-	Array.from(ingredientList).sort().forEach(i => $ul.innerHTML += i)
 
+	//filter index unique
+	let textContents = ingredientList.map(el => el.textContent)
+
+	let uniqueElements = ingredientList.filter((el, i, self) => i == textContents.indexOf(el.textContent))
+
+	uniqueElements.sort((a, b) => a.textContent.localeCompare(b.textContent));
+	uniqueElements.forEach(li => $ul.appendChild(li))
 
 	$ingredient_options.appendChild($ul);
 
 	//bind event display ingredients
-	bindEvent();
+	bindEvent(data);
 }
 
 const ingredientSearch = () => {
@@ -40,13 +55,9 @@ const ingredientSearch = () => {
 }
 
 
-const OptionsSpan = () => { }
-
-
-
-const bindEvent = () => {
+const bindEvent = (uniqueElements) => {
 	optionsSpanClick();
-	searchValSpanClick();
+	searchValSpanClick(uniqueElements);
 
 }
 
@@ -64,14 +75,15 @@ const optionsSpanClick = () => {
 	})
 }
 
-const searchValSpanClick = () => {
+const searchValSpanClick = (data) => {
 
 	$search_vals.forEach(el => el.addEventListener('click', ev => {
 		debugger
 		let searchVal = '';
 		let foundLis = '';
-		const ingredientList = new Set();
-		const lis = document.querySelectorAll(".li-item");
+
+		const ingredientList = [];
+		const lis = $ingredient_options.querySelectorAll(".li-item");
 		if (ev.target.tagName == 'SPAN')
 			searchVal = ev.target.parentElement.firstElementChild.value;
 
@@ -81,14 +93,14 @@ const searchValSpanClick = () => {
 		lis.forEach(el =>
 
 			el.textContent.includes(`${searchVal}`)
-				? ingredientList.add(`<li class='li-item'>${el.innerHTML} </li>`)
-				: '');
+				? ingredientList.push(el) : '');
+
 		// display 
-		foundLis = Array.from(ingredientList).sort()
+		foundLis = ingredientList.sort((a, b) => a.textContent.localeCompare(b.textContent));
 		if (foundLis.length > 0) {
 			$ingredient_options.style.height = 'fit-content'
 			$ingredient_options.firstElementChild.innerHTML = '';
-			foundLis.forEach(el => $ingredient_options.firstElementChild.innerHTML += el);
+			foundLis.forEach(el => $ingredient_options.firstElementChild.appendChild(el));
 
 		}
 	})

@@ -45,7 +45,6 @@ export class searchAsync {
 
 			}
 
-
 			this.indexList?.clear();
 			let res = await this.searchResult();
 
