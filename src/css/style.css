@@ -128,24 +128,25 @@
  #Advanced_search_fields {
  	justify-content: space-between;
  	margin-top: 10px;
- 	margin-bottom: 53px;
+ 	margin-bottom: 20px;
  }
 
  .select.row {
- 	padding-top: 15px;
- }
-
+	padding: 18px;
+	}
  .card {
- 	position: relative;
- 	width: 100%;
- 	height: 731px;
+	position: relative;
+	width: 100%;
+	height: 731px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+	border-radius: 20px;
+	overflow: clip;
+	}
+	p {
+		margin: 0;
 
- 	/* overflow-y: scroll; */
- 	background: #FFFFFF;
- 	box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
- 	border-radius: 21px;
- 	}
-
+	   }
  .options {
  	width: 100%;
  	overflow-y: clip;
@@ -252,7 +253,7 @@
 
  .card-img-top {
  	object-fit: cover;
- 	height: 219px;
+	 height: 270px;
  }
 
  .bi.bi-search {
@@ -284,4 +285,10 @@
 
 #ustensiles {
 	height: fit-content;
+}
+.col-3 {
+
+	margin-top: 66px;
+	padding-left: 0;
+	padding-right: 55px;
 }
