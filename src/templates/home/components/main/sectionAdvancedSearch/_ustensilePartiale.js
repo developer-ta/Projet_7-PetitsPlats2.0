@@ -1,5 +1,5 @@
 export const ustensileDisplay = (data) => {
-	debugger;
+	;
 
 	// Dom
 
@@ -10,12 +10,11 @@ export const ustensileDisplay = (data) => {
 
 	const $ustensile_search = document.querySelector('#ustensile-search')
 
-	// $ustensiles_options.style.display = 'flex'
-	// $ustensile_search.style.display = 'flex'
+
 
 	//bind event display ingredients
 	$display_options_span.addEventListener('click', (ev) => {
-		debugger
+
 		ev.stopPropagation();
 
 		$ustensiles_options.style.display = $ustensiles_options.style.display !== 'flex' ? 'flex' : 'none';

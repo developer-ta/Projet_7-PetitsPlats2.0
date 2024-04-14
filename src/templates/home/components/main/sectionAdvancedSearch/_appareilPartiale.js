@@ -1,5 +1,5 @@
 export const appareilsDisplay = (data) => {
-	debugger
+
 	//Dom
 	const $appareils_options = document.querySelector('#appareils>.options')
 	const $appareil = document.querySelector('#appareils')
@@ -12,7 +12,7 @@ export const appareilsDisplay = (data) => {
 
 	//bind event display ingredients
 	$display_options_span.addEventListener('click', (ev) => {
-		debugger
+
 		ev.stopPropagation();
 
 		$appareils_options.style.display = $appareils_options.style.display !== 'flex' ? 'flex' : 'none';

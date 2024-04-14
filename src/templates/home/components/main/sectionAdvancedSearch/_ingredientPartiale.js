@@ -1,3 +1,5 @@
+import { showBySelectedKeyWord } from "../../../../../services/utils/showBySelectedKeyWord.js"
+
 //Dom element
 const $ingredient_options = document.querySelector('#ingredients>.options')
 const $ingredient = document.querySelector('#ingredients')
@@ -24,8 +26,8 @@ export const ingredientDisplay = (data) => {
 	data.forEach((el) =>
 		el.ingredients.forEach(ing => {
 			const $li = document.createElement('li');
-			$li.className = 'li-item';
-			$li.idElement = el.id;
+			$li.className = 'li-item ingredient';
+			$li.id = el.id;
 			$li.innerHTML += `${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} `
 
 			ingredientList.push($li)
@@ -51,16 +53,23 @@ const ingredientSearch = () => {
 }
 
 
-const bindEvent = (uniqueElements) => {
-	optionsSpanClick();
-	searchValSpanClick(uniqueElements);
+const bindEvent = (data) => {
+	openCloseOptionsOnClick();
+	searchValOnClick();
+
+	// select one ingredient by key Word
+	showBySelectedKeyWord(data)
+
+
+
+
 
 }
 
 //event func
-const optionsSpanClick = () => {
+const openCloseOptionsOnClick = () => {
 	$display_options_span.addEventListener('click', (ev) => {
-		debugger
+
 		ev.stopPropagation();
 
 		$ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
@@ -71,10 +80,10 @@ const optionsSpanClick = () => {
 	})
 }
 
-const searchValSpanClick = (data) => {
+const searchValOnClick = () => {
 
 	$search_vals.forEach(el => el.addEventListener('click', ev => {
-		debugger
+
 		let searchVal = '';
 		let foundLis = '';
 

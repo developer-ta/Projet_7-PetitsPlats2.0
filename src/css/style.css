@@ -113,6 +113,7 @@
 	padding: 30px;
 	width: 100%;
 	max-width: 1440px;
+	min-height: 2000px;
 	}
 
 body {
@@ -166,7 +167,7 @@ p {
 	  .options {
 	  	width: 100%;
 	  	overflow-y: clip;
-	  	height: 315px;
+		  height: fit-content;
 	  	display: none;
 
 	align-items: unset;
@@ -241,22 +242,6 @@ html {
 	justify-content: center;
 	background-color: black;
 	}
-
-	#labelSearch {
-		width: 158px;
-		height: 50px;
-		background: #FFD15B;
-		border-radius: 10px;
-		font-size: larger;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		align-items: center;
-		margin: 25px 23px;
-		padding: 0;
-	}
-
-
 #labelSearch>span.bi_x {
 	color: black;
 	display: block;
@@ -301,7 +286,20 @@ h3 {
     height: fit-content;
     width: 20%;
 }
+#labelSearch {
 
+	height: 55px;
+	background: #FFD15B;
+	border-radius: 10px;
+	font-size: larger;
+	display: none;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin: 25px 10px;
+	padding: 0;
+	width: 20%;
+	}
 #ustensiles {
     height: fit-content;
     width: 20%;

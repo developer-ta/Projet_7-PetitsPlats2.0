@@ -46,6 +46,7 @@ export class searchAsync {
 			}
 
 			this.indexList?.clear();
+
 			let res = await this.searchResult();
 
 			if (res.length > 0) {
@@ -85,7 +86,7 @@ export class searchAsync {
 
 			this._prototypeSearchModel.forEach(
 				({ name, index }) => {
-					let testIn = name.match(this._valUserInReg)
+					//let testIn = name.match(this._valUserInReg)
 					if (name.match(this._valUserInReg)) {
 
 						i.push(index);
@@ -112,7 +113,7 @@ export class searchAsync {
 				({ ingredients, index }) => {
 
 					ingredients.forEach(ingredient => {
-						let testIn = ingredient.match(this._valUserInReg)
+
 						if (ingredient.match(this._valUserInReg)) {
 
 							i.push(index);
