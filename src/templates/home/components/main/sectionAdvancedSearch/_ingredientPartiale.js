@@ -1,4 +1,4 @@
-import { showBySelectedKeyWord } from "../../../../../services/utils/showBySelectedKeyWord.js"
+
 
 //Dom element
 const $ingredient_options = document.querySelector('#ingredients>.options')
@@ -44,8 +44,6 @@ export const ingredientDisplay = (data) => {
 
 	$ingredient_options.appendChild($ul);
 
-	//bind event display ingredients
-	bindEvent(data);
 }
 
 const ingredientSearch = () => {
@@ -53,61 +51,18 @@ const ingredientSearch = () => {
 }
 
 
-const bindEvent = (data) => {
-	openCloseOptionsOnClick();
-	searchValOnClick();
+// const bindEvent = (data) => {
+// 	openCloseOptionsOnClick();
+// 	searchValOnClick();
 
-	// select one ingredient by key Word
-	showBySelectedKeyWord(data)
-
-
+// 	// select one ingredient by key Word
+// 	showBySelectedKeyWord(data)
 
 
 
-}
 
-//event func
-const openCloseOptionsOnClick = () => {
-	$display_options_span.addEventListener('click', (ev) => {
 
-		ev.stopPropagation();
+// }
 
-		$ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
-		$ingredient_search.style.display = $ingredient_search.style.display !== 'flex' ? 'flex' : 'none';
-		$ingredient.style.height = "fit-content"
-		$display_options_span.firstChild.className =
-			$display_options_span.firstChild.className !== "bi bi-chevron-up" ? "bi bi-chevron-up" : "bi bi-chevron-down";
-	})
-}
 
-const searchValOnClick = () => {
 
-	$search_vals.forEach(el => el.addEventListener('click', ev => {
-
-		let searchVal = '';
-		let foundLis = '';
-
-		const ingredientList = [];
-		const lis = $ingredient_options.querySelectorAll(".li-item");
-		if (ev.target.tagName == 'SPAN')
-			searchVal = ev.target.parentElement.firstElementChild.value;
-
-		else if (ev.target.tagName == 'I')
-			searchVal = ev.target.parentElement.parentElement.firstElementChild.value;
-
-		lis.forEach(el =>
-
-			el.textContent.includes(`${searchVal}`)
-				? ingredientList.push(el) : '');
-
-		// display 
-		foundLis = ingredientList.sort((a, b) => a.textContent.localeCompare(b.textContent));
-		if (foundLis.length > 0) {
-			$ingredient_options.style.height = 'fit-content'
-			$ingredient_options.firstElementChild.innerHTML = '';
-			foundLis.forEach(el => $ingredient_options.firstElementChild.appendChild(el));
-
-		}
-	})
-	)
-}

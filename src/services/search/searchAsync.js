@@ -34,6 +34,7 @@ export class searchAsync {
 
 		this.$search_btn.addEventListener("click", async (ev) => {
 
+			debugger
 
 
 			ev.preventDefault();
