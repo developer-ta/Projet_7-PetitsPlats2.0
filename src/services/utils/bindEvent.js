@@ -190,8 +190,8 @@ const searchValOnClick = (option) => {
 //event func
 const openCloseOptionsOnClick = () => {
 	$display_options_spanIng.addEventListener('click', (ev) => {
-
-		ev.stopPropagation();
+		debugger
+		//ev.stopPropagation();
 
 		$ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
 		$ingredient_search.style.display = $ingredient_search.style.display !== 'flex' ? 'flex' : 'none';
