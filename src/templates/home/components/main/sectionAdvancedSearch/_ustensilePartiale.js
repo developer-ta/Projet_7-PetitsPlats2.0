@@ -6,33 +6,30 @@ export const ustensileDisplay = (data) => {
 	const $ustensiles_options = document.querySelector('#ustensiles>.options')
 	const $ustensile = document.querySelector('#ustensiles')
 
-	const $display_options_span = document.querySelector('#ustensiles>.select>span')
+	const $display_options_spanUst = document.querySelector('#ustensiles>.select>span')
 
 	const $ustensile_search = document.querySelector('#ustensile-search')
 
 
+	// display
 
-	//bind event display ingredients
-	$display_options_span.addEventListener('click', (ev) => {
-
-		ev.stopPropagation();
-
-		$ustensiles_options.style.display = $ustensiles_options.style.display !== 'flex' ? 'flex' : 'none';
-		$ustensile_search.style.display = $ustensile_search.style.display !== 'flex' ? 'flex' : 'none';
-		$ustensile.style.height = "fit-content"
-		$display_options_span.firstChild.className =
-			$display_options_span.firstChild.className !== "bi bi-chevron-up" ? "bi bi-chevron-up" : "bi bi-chevron-down";
-
-	})
-	// display 
 	$ustensiles_options.innerHTML = ''
 	const $ul = document.createElement('ul');
-	const ustensileList = new Set();
+	const ustensileList = [];
 	data.forEach((el) =>
-		el.ustensils.forEach(ust =>
-			ustensileList.add(`<li class='li-item'>${(ust[0] + ust.toLowerCase().slice(1))} <span><i class="bi bi-x"></i></span></li>`)
-		))
-	Array.from(ustensileList).sort().forEach(i => $ul.innerHTML += i)
+		el.ustensils.forEach(ust => {
+			const $li = document.createElement('li');
+			$li.className = 'li-item ustensile';
+			$li.id = el.id;
+			$li.innerHTML += (`${(ust[0].toUpperCase() + ust.slice(1).toLowerCase())}`)
+			ustensileList.push($li)
+		}))
 
+	//filter index unique
+	let textContents = ustensileList.map(el => el.textContent.toLowerCase())
+	//let uniqueTextContents = Array.from(new Set(textContents))
+	let uniqueElements = ustensileList.filter((el, index) => index === textContents.indexOf(el.textContent.toLowerCase()))
+	uniqueElements.sort((a, b) => a.textContent.localeCompare(b.textContent));
+	uniqueElements.forEach(li => $ul.appendChild(li))
 	$ustensiles_options.appendChild($ul);
 }

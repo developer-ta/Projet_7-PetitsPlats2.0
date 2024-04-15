@@ -281,7 +281,10 @@ h3 {
     height: fit-content;
     width: 20%;
 }
-
+#labelSearch>span>i {
+	font-weight: bolder;
+	font-size: xx-large;
+}
 #appareils {
     height: fit-content;
     width: 20%;
