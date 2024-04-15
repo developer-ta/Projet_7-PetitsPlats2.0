@@ -7,7 +7,7 @@ export const SectionResult = (dataList) => {
 
 const cardRecipeTemplate = (data) => {
 
-	const { image, name, ingredients, description } = data;
+	const { image, name, ingredients, description, time } = data;
 
 	const $search_result = document.getElementById('search_result');
 
@@ -21,6 +21,7 @@ const cardRecipeTemplate = (data) => {
 			<h5 class="card-title">${name}</h5>
 			<h6 class="card-title">RECETTE</h6>
 			<p class="card-text">${description.slice(0, 202)}</p>
+			<span class='time'>${time}min</span>
 		</div>
 		<div class="card-footer container m-0 p-0 border-0">
 			<table class="table border-white ">
