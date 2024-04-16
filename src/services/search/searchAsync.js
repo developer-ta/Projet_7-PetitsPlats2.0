@@ -9,7 +9,7 @@ export class searchAsync {
 
 
 
-		this.$search_btn = document.querySelector('.bi-search');
+		// this.$search_btn = document.querySelector('.bi-search');
 
 		this._prototypeSearchModel = recipeViewModel.prototypeSearchModel
 
@@ -26,13 +26,18 @@ export class searchAsync {
 
 
 	init() {
-		this.bindEvent()
+		HomeController.mainDisplay(this._recipes);
+		debugger;
+		this.bindEvent();
 
 	}
 
 	bindEvent() {
+		
+		let $searchInput = document.querySelector('#user_input');
 
-		this.$search_btn.addEventListener("click", async (ev) => {
+		let $search_btn = document.querySelector('.bi-search');
+		$search_btn.addEventListener("click", async (ev) => {
 
 			debugger
 
@@ -40,7 +45,7 @@ export class searchAsync {
 			ev.preventDefault();
 
 
-			if (this.$searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
+			if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
 				HomeController.mainDisplay(this._recipes);
 				return;
 
@@ -66,8 +71,10 @@ export class searchAsync {
 
 	get ValUserInRegExp() {
 
+		let $searchInput = document.querySelector('#user_input');
 
-		let valInput = this.$searchInput.value
+
+		let valInput = $searchInput.value
 
 		if (valInput.length >= 3) {
 			///\bc(oc)\b/gim 

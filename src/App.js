@@ -38,10 +38,8 @@ class App {
 		if (this.data) {
 
 			this.recipeViewModel = new RecipeModel(this.data)
-
+			debugger;
 			this.search = new searchAsync(this.recipeViewModel)
-
-
 		}
 
 	}

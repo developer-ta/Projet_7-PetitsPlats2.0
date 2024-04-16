@@ -25,7 +25,7 @@ const $appareil_search = document.querySelector('#appareil-search')
 
 export const bindEvent = (data) => {
 	// on click event
-	openCloseOptionsOnClick();
+	//openCloseOptionsOnClick();
 
 	searchValOnClick('ingredient');
 	searchValOnClick('appareil');
@@ -43,19 +43,24 @@ export const bindEvent = (data) => {
 }
 const labelSearchesCloseOnClick = (dataList) => {
 	//add event on click 
+	debugger
+	let $el = null
 	$labelSearches.forEach(i => i.lastElementChild.addEventListener('click', (ev) => {
 		ev.preventDefault()
 		debugger
 		if (ev.target.tagName == 'I') {
-			ev.target.parentElement.parentElement.style.display = 'none';
+			$el = ev.target.parentElement.parentElement
+			$el.style.display = 'none';
 		} else {
 
-			ev.target.parentElement.style.display !== 'flex' ? 'flex' : 'none';
+			$el = ev.target.parentElement
+			$el.style.display !== 'flex' ? 'flex' : 'none';
+
 		}
 
-		const el = document.querySelector('.labelSearch-ingredient')
-		el.firstElementChild.textContent = "";
-		el.idKey = "";
+		//const el = document.querySelector('.labelSearch-ingredient')
+		$el.firstElementChild.textContent = "";
+		$el.idKey = "";
 
 		filterBySelectedKey(dataList)
 
@@ -68,41 +73,40 @@ const showBySelectedKeyWord = (dataList) => {
 	lis.forEach(x => x.addEventListener("click", (ev) => {
 		ev.preventDefault();
 		debugger
+		let $el = null;
+		let event = null;
 		if (ev.target.className.includes('ingredient')) {
 
 			//const $display_options_spanIng = document.querySelector('#ingredients>.select>span')
 
-			const el = document.querySelector('.labelSearch-ingredient')
+			$el = document.querySelector('.labelSearch-ingredient')
 
 			$display_options_spanIng.click()
-
-			labelSearchShow(el, ev, dataList);
-
-
+			event = ev;
 
 		}
 		else if (ev.target.className.includes('ustensile')) {
 
 			//const $display_options_spanUst = document.querySelector('#ingredients>.select>span')
 
-			const el = document.querySelector('.labelSearch-ustensile')
+			$el = document.querySelector('.labelSearch-ustensile')
 
 			$display_options_spanUst.click()
 
-			labelSearchShow(el, ev, dataList);
+			event = ev;
 		}
 		else if (ev.target.className.includes('appareil')) {
 			debugger
 
 
-			const el = document.querySelector('.labelSearch-appareil')
+			$el = document.querySelector('.labelSearch-appareil')
 
 			$display_options_spanApp.click()
 
-			labelSearchShow(el, ev, dataList);
+			event = ev;
 		}
 
-
+		labelSearchShow($el, event, dataList);
 
 	}))
 
@@ -112,7 +116,7 @@ const showBySelectedKeyWord = (dataList) => {
 
 		debugger;
 
-		$labelSearch.firstChild.textContent = event.target.textContent;
+		$labelSearch.firstElementChild.textContent = event.target.textContent;
 
 		$labelSearch.style.display = $labelSearch.style.display !== 'flex' && 'flex';
 		$labelSearch.idKey = event.target.id
@@ -172,7 +176,7 @@ const searchValOnClick = (option) => {
 
 		lis.forEach(el =>
 
-			el.textContent.includes(`${searchVal}`)
+			el.textContent.toLowerCase().startsWith(`${searchVal}`)
 				? itemList.push(el) : '');
 
 		// display 
@@ -188,19 +192,19 @@ const searchValOnClick = (option) => {
 }
 
 //event func
-const openCloseOptionsOnClick = () => {
-	$display_options_spanIng.addEventListener('click', (ev) => {
-		debugger
-		//ev.stopPropagation();
+// const openCloseOptionsOnClick = () => {
 
-		$ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
-		$ingredient_search.style.display = $ingredient_search.style.display !== 'flex' ? 'flex' : 'none';
-		$ingredient.style.height = "fit-content"
-		$display_options_spanIng.firstChild.className =
-			$display_options_spanIng.firstChild.className !== "bi bi-chevron-up" ? "bi bi-chevron-up" : "bi bi-chevron-down";
-	})
-}
+// }
+$display_options_spanIng.addEventListener('click', (ev) => {
+	debugger
+	ev.stopPropagation();
 
+	$ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
+	$ingredient_search.style.display = $ingredient_search.style.display !== 'flex' ? 'flex' : 'none';
+	$ingredient.style.height = "fit-content"
+	$display_options_spanIng.firstChild.className =
+		$display_options_spanIng.firstChild.className !== "bi bi-chevron-up" ? "bi bi-chevron-up" : "bi bi-chevron-down";
+})
 
 //bind event display ustensile
 $display_options_spanUst.addEventListener('click', (ev) => {
