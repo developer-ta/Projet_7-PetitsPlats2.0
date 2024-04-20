@@ -9,12 +9,19 @@ export const SectionResult = (dataList) => {
 
 const cardRecipeTemplate = (data) => {
 
-
 	const $search_result = document.getElementById('search_result');
+	let $searchInputVal = document.querySelector('#user_input').value;
+	if (data.length == 0) {
+		debugger
+		let nonResultStr = `<h3>Aucune recette ne contient ${$searchInputVal} 
+		,vous pouvez chercher « tarte aux pommes », « poisson » etc ...</h3>`;
+		$search_result.insertAdjacentHTML('beforeend', nonResultStr)
+		return;
+	}
+
 	const { image, name, ingredients, description, time } = data;
 
-	let tbs = setTableData(ingredients);
-	console.log('tbs: ', tbs);
+
 
 	const $tbs = setTableData(ingredients);
 
@@ -36,7 +43,7 @@ const cardRecipeTemplate = (data) => {
 					<th></th>
 				</tr>
 				
-                 ${tbs}
+                 ${$tbs}
 			</table>
 			</div>
 			</div>
@@ -45,45 +52,65 @@ const cardRecipeTemplate = (data) => {
 
 	$search_result.insertAdjacentHTML('beforeend', card_html)
 
-
+	//const $table = document.querySelector('.table');
 
 
 
 }
 const cardRecipes = (dataList) => {
-
+	debugger
 	const $search_result = document.getElementById('search_result');
 	$search_result.innerHTML = '';
 	if (isExciteOrNotEmpty(dataList)) {
 
 		dataList.forEach((data) => { cardRecipeTemplate(data); })
+		return;
 	}
 	cardRecipeTemplate(dataList);
-
 }
 
+// const setTableData = (ingredients) => {
+// 	let index = 0;
+// 	let ingredientData = '';
+// 	while (index < ingredients.length) {
+
+// 		ingredientData += `<tr>
+// 				<td>${ingredients[index].ingredient}<br><span>${ingredients[index].ingredient}</span></td>`;
+
+// 		if (index + 1 < ingredients.length) {
+// 			index++;
+// 			ingredientData +=
+// 				`<td>${ingredients[index].ingredient}</td>
+// 			</tr>`;
+// 		}
+// 		else { ingredientData += `<td></td></tr>`; }
 
 
-let i = 0;
-const setTableData = (ingredientList) => {
+// 		index++;
+// 	}
 
-	console.log('ingredientList: ', ingredientList, i++);
+// 	return ingredientData
 
+// }
 
+const setTableData = (ingredients) => {
 	let index = 0;
 	let ingredientData = '';
-	while (index < ingredientList.length) {
+	while (index < ingredients.length) {
 
-		const { ingredient, quantity, unit } = ingredientList[index];
-
+		const { ingredient, quantity, unit } = ingredients[index];
+		// 	    "ingredient": "Lait de coco",
+		// 	    "quantity": 400,
+		// 	    "unit": "ml"
+		// 	  },
 		ingredientData += `<tr>
 				<td>${ingredient}<br>
 				<span class='quantity'>${quantity ?? ''} ${unit ?? ''}</span>
 				</td>`;
 
-		if (index + 1 < ingredientList.length) {
+		if (index + 1 < ingredients.length) {
 			index++;
-			const { ingredient, quantity, unit } = ingredientList[index];
+			const { ingredient, quantity, unit } = ingredients[index];
 			ingredientData +=
 				`<td>${ingredient}<br>
 				<span class='quantity'>${quantity ?? ''} ${unit ?? ''}</span>

@@ -45,6 +45,7 @@ export class searchAsync {
 			}
 
 			this.indexList = [];
+			this.resultRecipes = [];
 
 
 			this.indexList = await this.searchResult();
