@@ -10,6 +10,7 @@ export class HttpClient {
 		const res = await fetch(this._strUrl);
 		if (res.ok) {
 			const data = await res.json();
+			console.log('data: ', data);
 			return data;
 		}
 		return '';

@@ -1,3 +1,5 @@
+import { isExciteOrNotEmpty } from "../../../../../services/utils/validator.js";
+
 export const SectionResult = (dataList) => {
 	cardRecipes(dataList);
 }
@@ -7,10 +9,12 @@ export const SectionResult = (dataList) => {
 
 const cardRecipeTemplate = (data) => {
 
-	const { image, name, ingredients, description, time } = data;
 
 	const $search_result = document.getElementById('search_result');
+	const { image, name, ingredients, description, time } = data;
 
+	let tbs = setTableData(ingredients);
+	console.log('tbs: ', tbs);
 
 	const $tbs = setTableData(ingredients);
 
@@ -32,7 +36,7 @@ const cardRecipeTemplate = (data) => {
 					<th></th>
 				</tr>
 				
-                 ${$tbs}
+                 ${tbs}
 			</table>
 			</div>
 			</div>
@@ -41,7 +45,7 @@ const cardRecipeTemplate = (data) => {
 
 	$search_result.insertAdjacentHTML('beforeend', card_html)
 
-	//const $table = document.querySelector('.table');
+
 
 
 
@@ -50,52 +54,36 @@ const cardRecipes = (dataList) => {
 
 	const $search_result = document.getElementById('search_result');
 	$search_result.innerHTML = '';
-	dataList.forEach((data) => { cardRecipeTemplate(data); })
+	if (isExciteOrNotEmpty(dataList)) {
+
+		dataList.forEach((data) => { cardRecipeTemplate(data); })
+	}
+	cardRecipeTemplate(dataList);
 
 }
 
-// const setTableData = (ingredients) => {
-// 	let index = 0;
-// 	let ingredientData = '';
-// 	while (index < ingredients.length) {
-
-// 		ingredientData += `<tr>
-// 				<td>${ingredients[index].ingredient}<br><span>${ingredients[index].ingredient}</span></td>`;
-
-// 		if (index + 1 < ingredients.length) {
-// 			index++;
-// 			ingredientData +=
-// 				`<td>${ingredients[index].ingredient}</td>
-// 			</tr>`;
-// 		}
-// 		else { ingredientData += `<td></td></tr>`; }
 
 
-// 		index++;
-// 	}
+let i = 0;
+const setTableData = (ingredientList) => {
 
-// 	return ingredientData
+	console.log('ingredientList: ', ingredientList, i++);
 
-// }
 
-const setTableData = (ingredients) => {
 	let index = 0;
 	let ingredientData = '';
-	while (index < ingredients.length) {
+	while (index < ingredientList.length) {
 
-		const { ingredient, quantity, unit } = ingredients[index];
-		// 	    "ingredient": "Lait de coco",
-		// 	    "quantity": 400,
-		// 	    "unit": "ml"
-		// 	  },
+		const { ingredient, quantity, unit } = ingredientList[index];
+
 		ingredientData += `<tr>
 				<td>${ingredient}<br>
 				<span class='quantity'>${quantity ?? ''} ${unit ?? ''}</span>
 				</td>`;
 
-		if (index + 1 < ingredients.length) {
+		if (index + 1 < ingredientList.length) {
 			index++;
-			const { ingredient, quantity, unit } = ingredients[index];
+			const { ingredient, quantity, unit } = ingredientList[index];
 			ingredientData +=
 				`<td>${ingredient}<br>
 				<span class='quantity'>${quantity ?? ''} ${unit ?? ''}</span>

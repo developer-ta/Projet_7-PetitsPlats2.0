@@ -4,14 +4,9 @@ import { isExciteOrNotEmpty } from "../utils/validator.js";
 export class searchAsync {
 
 	constructor (recipeViewModel) {
+		debugger
 
 		this.$searchInput = document.querySelector('#user_input');
-
-
-
-		// this.$search_btn = document.querySelector('.bi-search');
-
-		this._prototypeSearchModel = recipeViewModel.prototypeSearchModel
 
 		this._recipes = recipeViewModel.recipes
 
@@ -26,44 +21,43 @@ export class searchAsync {
 
 
 	init() {
+
 		HomeController.mainDisplay(this._recipes);
 		debugger;
-		this.bindEvent();
+		this.bindEventSearch();
 
 	}
 
-	bindEvent() {
+	bindEventSearch() {
 		
 		let $searchInput = document.querySelector('#user_input');
 
 		let $search_btn = document.querySelector('.bi-search');
 		$search_btn.addEventListener("click", async (ev) => {
 
-			debugger
-
-
 			ev.preventDefault();
 
+			debugger
 
 			if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
 				HomeController.mainDisplay(this._recipes);
 				return;
-
 			}
 
-			this.indexList?.clear();
+			this.indexList = [];
 
-			let res = await this.searchResult();
 
-			if (res.length > 0) {
+			this.indexList = await this.searchResult();
 
-				this.indexList = new Set(res);
+			if (this.indexList.length > 0) {
+
+
 				this.resultRecipes = this.Result(this.indexList)
 
 				if (isExciteOrNotEmpty(this.resultRecipes)) HomeController.mainDisplay(this.resultRecipes)
 
 			}
-
+			HomeController.mainDisplay(this.resultRecipes)
 
 
 		})
@@ -87,65 +81,15 @@ export class searchAsync {
 
 	}
 
-	nameSearch = () => {
+	searchUserIn = async () => {
 
 		let i = []
 		if (this.ValUserInRegExp) {
 
-			this._prototypeSearchModel.forEach(
-				({ name, index }) => {
-					//let testIn = name.match(this._valUserInReg)
-					if (name.match(this._valUserInReg)) {
+			this._recipes.forEach(
+				({ name, ingredients, description }, index) => {
 
-						i.push(index);
-
-					}
-
-				}
-			)
-		}
-		console.log('indexList: ', this.indexList?.size);
-		return i
-
-
-	}
-
-	ingredientSearch = () => {
-
-
-		let i = []
-		if (this.ValUserInRegExp) {
-
-			this._prototypeSearchModel.forEach(
-
-				({ ingredients, index }) => {
-
-					ingredients.forEach(ingredient => {
-
-						if (ingredient.match(this._valUserInReg)) {
-
-							i.push(index);
-
-						}
-
-					}
-					)
-
-				}
-			)
-		}
-		console.log('indexList: ', i);
-		return i
-	}
-
-	descriptionSearch() {
-		let i = []
-		if (this.ValUserInRegExp) {
-
-			this._prototypeSearchModel.forEach(
-				({ description, index }) => {
-					//let testIn = description.match(this._valUserInReg)
-					if (description.match(this._valUserInReg)) {
+					if (name.concat('', ingredients.map(obj => obj.ingredient).toString(), '', description).search(this._valUserInReg) !== -1) {
 
 						i.push(index);
 
@@ -156,15 +100,16 @@ export class searchAsync {
 		}
 
 		return i
+
+
 	}
+
 
 	searchResult = async () => {
-		// await this.nameSearch();
-		// const res = await this.ingredientSearch();
-		const [name, ing, desc] = await Promise
-			.all([this.nameSearch(), this.ingredientSearch(), this.descriptionSearch()]);
-		console.log('indexList: ', this.indexList?.size);
-		return [...name, ...ing, ...desc];
+
+		const res = await this.searchUserIn();
+
+		return res;
 
 
 
@@ -181,44 +126,3 @@ export class searchAsync {
 
 
 }
-// const searchObj = {
-// 	index: 0,
-// 	name: '',
-// 	ingredients: [],
-// 	description: ''
-// };
-
-
-// 	"id": 1,
-// 	"image": "Recette01.jpg",
-// 	"name": "Limonade de Coco",
-// 	"servings": 1,
-// 	"ingredients": [
-// 	  {
-// 	    "ingredient": "Lait de coco",
-// 	    "quantity": 400,
-// 	    "unit": "ml"
-// 	  },
-// 	  {
-// 	    "ingredient": "Jus de citron",
-// 	    "quantity": 2
-// 	  },
-// 	  {
-// 	    "ingredient": "Crème de coco",
-// 	    "quantity": 2,
-// 	    "unit": "cuillères à soupe"
-// 	  },
-// 	  {
-// 	    "ingredient": "Sucre",
-// 	    "quantity": 30,
-// 	    "unit": "grammes"
-// 	  },
-// 	  {
-// 	    "ingredient": "Glaçons"
-// 	  }
-// 	],
-// 	"time": 10,
-// 	"description": "Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée",
-// 	"appliance": "Blender",
-// 	"ustensils": ["cuillère à Soupe", "verres", "presse citron"]
-//  }

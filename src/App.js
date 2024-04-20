@@ -34,9 +34,9 @@ class App {
 			console.log('error: ', error);
 		}
 
-		//set model & get proto 
 		if (this.data) {
 
+			//set model 
 			this.recipeViewModel = new RecipeModel(this.data)
 			debugger;
 			this.search = new searchAsync(this.recipeViewModel)
