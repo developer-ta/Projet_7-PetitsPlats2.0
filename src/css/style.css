@@ -308,7 +308,12 @@
  	right: 5%;
  	z-index: 100;
  }
-
+ .alert.alert-warning {
+ 	font-size: x-large;
+ 	font-weight: bolder;
+ 	color: firebrick;
+ 	text-align: center;
+ }
  #labelSearch {
 
  	height: 55px;

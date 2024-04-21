@@ -10,12 +10,16 @@ export const SectionResult = (dataList) => {
 const cardRecipeTemplate = (data) => {
 
 	const $search_result = document.getElementById('search_result');
+	const $interface = document.getElementById('advance_search');
 	let $searchInputVal = document.querySelector('#user_input').value;
 	if (data.length == 0) {
 		debugger
-		let nonResultStr = `<h3>Aucune recette ne contient ${$searchInputVal} 
-		,vous pouvez chercher « tarte aux pommes », « poisson » etc ...</h3>`;
-		$search_result.insertAdjacentHTML('beforeend', nonResultStr)
+
+		let nonResultStr = `<div class="alert alert-warning" role="alert">
+		Aucune recette ne contient <big>${$searchInputVal} </big> <br />
+		vous pouvez chercher « tarte aux pommes », « poisson » etc ...!
+	   </div>`;
+		$interface.innerHTML = nonResultStr
 		return;
 	}
 
