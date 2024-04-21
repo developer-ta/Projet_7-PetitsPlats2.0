@@ -246,7 +246,7 @@ html {
 	background-color: black;
 	}
 
-#labelSearch>span.bi_x {
+.labelSearch>span.bi_x {
 	color: black;
 	display: block;
 	font-size: large;
@@ -287,7 +287,7 @@ h3 {
 	width: 20%;
 }
 
-#labelSearch>span>i {
+.labelSearch>span>i {
 	font-weight: bolder;
 	font-size: xx-large;
 }
@@ -320,7 +320,7 @@ h3 {
 	margin-top: 15px;
 }
 
-#labelSearch {
+.labelSearch {
 
 	height: 55px;
 	background: #FFD15B;

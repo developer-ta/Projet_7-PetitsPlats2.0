@@ -2,7 +2,7 @@ import { recettesQuantityDisplay } from "../../templates/home/components/main/se
 import { SectionResult } from "../../templates/home/components/main/sectionResult/SectionResult.js";
 
 //dom 
-const $labelSearches = Array.from(document.querySelectorAll("#labelSearch"));
+const $labelSearches = Array.from(document.querySelectorAll(".labelSearch"));
 const $display_options_spanIng = document.querySelector('#ingredients>.select>span')
 const $ingredient_search = document.querySelector('#ingredient-search')
 const $ingredient_options = document.querySelector('#ingredients>.options')
@@ -127,7 +127,7 @@ const showBySelectedKeyWord = (dataList) => {
 }
 const filterBySelectedKey = (dataList) => {
 	debugger
-	const $labelSearches = Array.from(document.querySelectorAll("#labelSearch"));
+	const $labelSearches = Array.from(document.querySelectorAll(".labelSearch"));
 	const keys = $labelSearches.map(x => x.idKey);
 	let res = dataList.filter(el => keys.includes(`${el.id}`))
 	if (res.length == 0) {
