@@ -1,5 +1,5 @@
 export const Header = () => {
-	debugger
+
 	const $container = document.querySelector('body');
 
 	const head_html = `<header class="container bg-image" name='header'>

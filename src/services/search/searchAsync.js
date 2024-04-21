@@ -4,7 +4,7 @@ import { isExciteOrNotEmpty } from "../utils/validator.js";
 export class searchAsync {
 
 	constructor (recipeViewModel) {
-		debugger
+		
 
 		this.$searchInput = document.querySelector('#user_input');
 
@@ -23,13 +23,13 @@ export class searchAsync {
 	init() {
 
 		HomeController.mainDisplay(this._recipes);
-		debugger;
+		;
 		this.bindEventSearch();
 
 	}
 
 	bindEventSearch() {
-		
+
 		let $searchInput = document.querySelector('#user_input');
 
 		let $search_btn = document.querySelector('.bi-search');
@@ -37,7 +37,7 @@ export class searchAsync {
 
 			ev.preventDefault();
 
-			debugger
+			
 
 			if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
 				HomeController.mainDisplay(this._recipes);
@@ -87,22 +87,18 @@ export class searchAsync {
 		let i = []
 		if (this.ValUserInRegExp) {
 
-			this._recipes.forEach(
-				({ name, ingredients, description }, index) => {
+			for (let index = 0; index < this._recipes.length; index++) {
 
-					if (name.concat('', ingredients.map(obj => obj.ingredient).toString(), '', description).search(this._valUserInReg) !== -1) {
+				const { name, ingredients, description } = this._recipes[index];
 
-						i.push(index);
+				if (name.concat('', ingredients.map(obj => obj.ingredient).toString(), '', description)
+					.search(this._valUserInReg) !== -1) { i.push(index); }
 
-					}
+			}
 
-				}
-			)
 		}
 
 		return i
-
-
 	}
 
 

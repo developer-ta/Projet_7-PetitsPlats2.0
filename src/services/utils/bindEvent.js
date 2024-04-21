@@ -13,7 +13,6 @@ const $ingredient = document.querySelector('#ingredients')
 const $ustensiles_options = document.querySelector('#ustensiles>.options')
 const $ustensile = document.querySelector('#ustensiles')
 const $display_options_spanUst = document.querySelector('#ustensiles>.select>span')
-const ustensile = document.querySelector('#ustensiles>.select>span')
 
 const $ustensile_search = document.querySelector('#ustensile-search')
 
@@ -26,8 +25,7 @@ const $appareil_search = document.querySelector('#appareil-search')
 
 export const bindEvent = (data) => {
 	// on click event
-	//openCloseOptionsOnClick();
-
+	
 	searchValOnClick('ingredient');
 	searchValOnClick('appareil');
 	searchValOnClick('ustensile');
@@ -44,11 +42,11 @@ export const bindEvent = (data) => {
 }
 const labelSearchesCloseOnClick = (dataList) => {
 	//add event on click 
-	debugger
+	
 	let $el = null
 	$labelSearches.forEach(i => i.lastElementChild.addEventListener('click', (ev) => {
 		ev.preventDefault()
-		debugger
+		
 		if (ev.target.tagName == 'I') {
 			$el = ev.target.parentElement.parentElement
 			$el.style.display = 'none';
@@ -72,7 +70,7 @@ const showBySelectedKeyWord = (dataList) => {
 	const lis = document.querySelectorAll(".li-item");
 	lis.forEach(x => x.addEventListener("click", (ev) => {
 		ev.preventDefault();
-		debugger
+		
 		let $el = null;
 		let event = null;
 		if (ev.target.className.includes('ingredient')) {
@@ -92,7 +90,7 @@ const showBySelectedKeyWord = (dataList) => {
 			event = ev;
 		}
 		else if (ev.target.className.includes('appareil')) {
-			debugger
+			
 
 
 			$el = document.querySelector('.labelSearch-appareil')
@@ -110,7 +108,7 @@ const showBySelectedKeyWord = (dataList) => {
 	const labelSearchShow = ($labelSearch, event, dataList) => {
 
 
-		debugger;
+		;
 
 		$labelSearch.firstElementChild.textContent = event.target.textContent;
 
@@ -126,7 +124,7 @@ const showBySelectedKeyWord = (dataList) => {
 
 }
 const filterBySelectedKey = (dataList) => {
-	debugger
+	
 	const $labelSearches = Array.from(document.querySelectorAll(".labelSearch"));
 	const keys = $labelSearches.map(x => x.idKey);
 	let res = dataList.filter(el => keys.includes(`${el.id}`))
@@ -142,7 +140,7 @@ const filterBySelectedKey = (dataList) => {
 
 }
 const searchValOnClick = (option) => {
-	debugger
+	
 	let $el = null;
 	let element = null;
 	if (option === 'ingredient') {
@@ -163,7 +161,7 @@ const searchValOnClick = (option) => {
 
 
 	element.addEventListener('click', ev => {
-		debugger
+		
 		let searchVal = '';
 		let foundLis = '';
 
@@ -195,7 +193,7 @@ const searchValOnClick = (option) => {
 
 
 $display_options_spanIng.addEventListener('click', (ev) => {
-	debugger
+	
 	ev.stopPropagation();
 
 	$ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';

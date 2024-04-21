@@ -12,7 +12,7 @@ const cardRecipeTemplate = (data) => {
 	const $interface = document.querySelector('.alert-warning');
 	let $searchInputVal = document.querySelector('#user_input').value;
 	if (data.length == 0) {
-		debugger
+
 		$interface.innerHTML = ''
 		// $advance_search.style
 		$advance_search.style.display = $advance_search.style.display !== 'none' && 'none'
@@ -59,7 +59,7 @@ const cardRecipeTemplate = (data) => {
 
 }
 const cardRecipes = (dataList) => {
-	debugger
+
 	const $search_result = document.getElementById('search_result');
 	$search_result.innerHTML = '';
 	if (isExciteOrNotEmpty(dataList)) {

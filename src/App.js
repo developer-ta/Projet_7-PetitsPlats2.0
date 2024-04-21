@@ -38,7 +38,7 @@ class App {
 
 			//set model 
 			this.recipeViewModel = new RecipeModel(this.data)
-			debugger;
+				;
 			this.search = new searchAsync(this.recipeViewModel)
 		}
 
