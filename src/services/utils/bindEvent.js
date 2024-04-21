@@ -1,3 +1,4 @@
+import { recettesQuantityDisplay } from "../../templates/home/components/main/sectionAdvancedSearch/AdvancedSearch.js";
 import { SectionResult } from "../../templates/home/components/main/sectionResult/SectionResult.js";
 
 //dom 
@@ -58,7 +59,6 @@ const labelSearchesCloseOnClick = (dataList) => {
 
 		}
 
-		//const el = document.querySelector('.labelSearch-ingredient')
 		$el.firstElementChild.textContent = "";
 		$el.idKey = "";
 
@@ -68,7 +68,7 @@ const labelSearchesCloseOnClick = (dataList) => {
 }
 
 const showBySelectedKeyWord = (dataList) => {
-	//const $ingredient_options = document.querySelector('#ingredients>.options')
+
 	const lis = document.querySelectorAll(".li-item");
 	lis.forEach(x => x.addEventListener("click", (ev) => {
 		ev.preventDefault();
@@ -77,8 +77,6 @@ const showBySelectedKeyWord = (dataList) => {
 		let event = null;
 		if (ev.target.className.includes('ingredient')) {
 
-			//const $display_options_spanIng = document.querySelector('#ingredients>.select>span')
-
 			$el = document.querySelector('.labelSearch-ingredient')
 
 			$display_options_spanIng.click()
@@ -86,8 +84,6 @@ const showBySelectedKeyWord = (dataList) => {
 
 		}
 		else if (ev.target.className.includes('ustensile')) {
-
-			//const $display_options_spanUst = document.querySelector('#ingredients>.select>span')
 
 			$el = document.querySelector('.labelSearch-ustensile')
 
@@ -133,8 +129,14 @@ const filterBySelectedKey = (dataList) => {
 	debugger
 	const $labelSearches = Array.from(document.querySelectorAll("#labelSearch"));
 	const keys = $labelSearches.map(x => x.idKey);
-	const res = dataList.filter(el => keys.includes(`${el.id}`))
+	let res = dataList.filter(el => keys.includes(`${el.id}`))
+	if (res.length == 0) {
+		res = document.getElementById('advance_search').dataCurrent
 
+	}
+
+
+	recettesQuantityDisplay(res);
 	SectionResult(res);
 
 
@@ -191,10 +193,7 @@ const searchValOnClick = (option) => {
 
 }
 
-//event func
-// const openCloseOptionsOnClick = () => {
 
-// }
 $display_options_spanIng.addEventListener('click', (ev) => {
 	debugger
 	ev.stopPropagation();

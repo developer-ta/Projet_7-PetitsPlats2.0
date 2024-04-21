@@ -52,6 +52,7 @@ export class searchAsync {
 			}
 
 			this.indexList?.clear();
+			this.resultRecipes = [];
 
 			let res = await this.searchResult();
 
@@ -63,7 +64,7 @@ export class searchAsync {
 				if (isExciteOrNotEmpty(this.resultRecipes)) HomeController.mainDisplay(this.resultRecipes)
 
 			}
-
+			HomeController.mainDisplay(this.resultRecipes)
 
 
 		})
