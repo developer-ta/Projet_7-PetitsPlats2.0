@@ -5,21 +5,21 @@ export const SectionResult = (dataList) => {
 }
 
 
-
-
 const cardRecipeTemplate = (data) => {
 
 	const $search_result = document.getElementById('search_result');
-	const $interface = document.getElementById('advance_search');
+	const $advance_search = document.getElementById('advance_search');
+	const $interface = document.querySelector('.alert-warning');
 	let $searchInputVal = document.querySelector('#user_input').value;
 	if (data.length == 0) {
 		debugger
-
-		let nonResultStr = `<div class="alert alert-warning" role="alert">
-		Aucune recette ne contient <big>${$searchInputVal} </big> <br />
-		vous pouvez chercher « tarte aux pommes », « poisson » etc ...!
-	   </div>`;
-		$interface.innerHTML = nonResultStr
+		$interface.innerHTML = ''
+		// $advance_search.style
+		$advance_search.style.display = $advance_search.style.display !== 'none' && 'none'
+		$interface.style.display = $interface.style.display !== 'flex' && 'flex'
+		let $nonResultStr = `<p>Aucune recette ne contient <strong>${$searchInputVal} </strong> <br />
+		vous pouvez chercher « tarte aux pommes », « poisson » etc ...!</p>`;
+		$interface.insertAdjacentHTML('afterbegin', $nonResultStr)
 		return;
 	}
 
@@ -53,12 +53,9 @@ const cardRecipeTemplate = (data) => {
 			</div>
 			</div>`;
 
-
+	$advance_search.style.display = $advance_search.style.display !== 'block' && 'block'
+	$interface.style.display = $interface.style.display !== 'none' && 'none'
 	$search_result.insertAdjacentHTML('beforeend', card_html)
-
-	//const $table = document.querySelector('.table');
-
-
 
 }
 const cardRecipes = (dataList) => {
@@ -73,29 +70,7 @@ const cardRecipes = (dataList) => {
 	cardRecipeTemplate(dataList);
 }
 
-// const setTableData = (ingredients) => {
-// 	let index = 0;
-// 	let ingredientData = '';
-// 	while (index < ingredients.length) {
 
-// 		ingredientData += `<tr>
-// 				<td>${ingredients[index].ingredient}<br><span>${ingredients[index].ingredient}</span></td>`;
-
-// 		if (index + 1 < ingredients.length) {
-// 			index++;
-// 			ingredientData +=
-// 				`<td>${ingredients[index].ingredient}</td>
-// 			</tr>`;
-// 		}
-// 		else { ingredientData += `<td></td></tr>`; }
-
-
-// 		index++;
-// 	}
-
-// 	return ingredientData
-
-// }
 
 const setTableData = (ingredients) => {
 	let index = 0;
@@ -103,10 +78,7 @@ const setTableData = (ingredients) => {
 	while (index < ingredients.length) {
 
 		const { ingredient, quantity, unit } = ingredients[index];
-		// 	    "ingredient": "Lait de coco",
-		// 	    "quantity": 400,
-		// 	    "unit": "ml"
-		// 	  },
+
 		ingredientData += `<tr>
 				<td>${ingredient}<br>
 				<span class='quantity'>${quantity ?? ''} ${unit ?? ''}</span>

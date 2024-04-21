@@ -5,6 +5,9 @@ import { SectionResult } from "./sectionResult/SectionResult.js";
 
 export const Main = (dataList) => {
 	debugger
+
+	document.getElementById('advance_search').dataCurrent = dataList;
+
 	if (isExciteOrNotEmpty(dataList)) {
 		AdvancedSearch(dataList);
 

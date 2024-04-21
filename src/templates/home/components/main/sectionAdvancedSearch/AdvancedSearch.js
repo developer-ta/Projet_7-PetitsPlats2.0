@@ -15,7 +15,7 @@ export const AdvancedSearch = (data) => {
 }
 
 
-const recettesQuantityDisplay = (data) => {
+export const recettesQuantityDisplay = (data) => {
 
 	const $Recipe_quantity = document.querySelector('#Recipe-quantity')
 	$Recipe_quantity.firstElementChild.textContent = `${data.length} recettes`

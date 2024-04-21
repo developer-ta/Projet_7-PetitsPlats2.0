@@ -313,6 +313,10 @@
  	font-weight: bolder;
  	color: firebrick;
  	text-align: center;
+	display: none;
+	align-items: center;
+	height: 450px;
+	margin-top: 15px;
  }
  #labelSearch {
 
