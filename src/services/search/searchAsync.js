@@ -4,15 +4,13 @@ import { isExciteOrNotEmpty } from "../utils/validator.js";
 export class searchAsync {
 
 	constructor (recipeViewModel) {
-		
+
 
 		this.$searchInput = document.querySelector('#user_input');
 
 		this._recipes = recipeViewModel.recipes
 
 		this._valUserInReg = null;
-
-		this.indexList = null;
 
 		this.resultRecipes = null;
 
@@ -37,27 +35,21 @@ export class searchAsync {
 
 			ev.preventDefault();
 
-			
-
 			if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
 				HomeController.mainDisplay(this._recipes);
 				return;
 			}
 
-			this.indexList = [];
 			this.resultRecipes = [];
 
+			this.resultRecipes = await this.getResultMultiThreadsSearch();
 
-			this.indexList = await this.searchResult();
+			if (isExciteOrNotEmpty(this.resultRecipes)) {
 
-			if (this.indexList.length > 0) {
-
-
-				this.resultRecipes = this.Result(this.indexList)
-
-				if (isExciteOrNotEmpty(this.resultRecipes)) HomeController.mainDisplay(this.resultRecipes)
+				HomeController.mainDisplay(this.resultRecipes)
 
 			}
+			//by default this.resultRecipes=[]
 			HomeController.mainDisplay(this.resultRecipes)
 
 
@@ -82,42 +74,53 @@ export class searchAsync {
 
 	}
 
-	searchUserIn = async () => {
+	searchUserIn = async (start, end) => {
+		debugger
+		let foundIndexes = []
 
-		let i = []
-		if (this.ValUserInRegExp) {
+		if (!this.ValUserInRegExp) return foundIndexes
 
-			for (let index = 0; index < this._recipes.length; index++) {
+		const resultPromise = new Promise(resolve => {
+			for (let index = start; index < end; index++) {
 
 				const { name, ingredients, description } = this._recipes[index];
 
-				if (name.concat('', ingredients.map(obj => obj.ingredient).toString(), '', description)
-					.search(this._valUserInReg) !== -1) { i.push(index); }
+				if (name.search(this._valUserInReg) !== -1 ||
+					description.search(this._valUserInReg) !== -1 ||
+					ingredients.map(obj => obj.ingredient).toString().search(this._valUserInReg) !== -1) {
+
+					foundIndexes.push(this._recipes[index]);
+				}
 
 			}
 
+			resolve(foundIndexes);
+		})
+
+
+		return resultPromise;
+
+	}
+	getResultMultiThreadsSearch = async () => {
+		debugger
+		const maxThread = 4;
+		const lengthArr = this._recipes.length
+		let lot = lengthArr / maxThread
+		const promises = []
+
+		for (let i = 0; i < maxThread; i++) {
+			//Math.floor(lot + i * lot)
+			let lotStart = Math.floor(i * lot)//0:0,1:lot,2:2
+			let lotEnd = Math.floor((i + 1) * lot)
+			//res type []
+			promises.push(this.searchUserIn(lotStart, lotEnd))
 		}
-
-		return i
+		const res = await Promise.all(promises);
+		return res.flat()
 	}
 
 
-	searchResult = async () => {
 
-		const res = await this.searchUserIn();
-
-		return res;
-
-
-
-	}
-
-	Result = (indexList => {
-		let res = []
-		indexList.forEach(i => res.push(this._recipes.at(i)))
-
-		return res
-	})
 
 
 
