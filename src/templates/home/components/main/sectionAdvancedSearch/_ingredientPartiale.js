@@ -16,26 +16,26 @@ const $search_vals = document.querySelectorAll('.search-val')
 export const ingredientDisplay = (data) => {
 
 
-	// display 
-	const showListSearched = (option, data) => {
-		const $ul = document.createElement('ul');
-		if (option == 'ingredient') {
-			$ingredient_options.innerHTML = ''
-			const ingredientList = [];
-			data.forEach((el) =>
-				el.ingredients.forEach(ing => {
-					const $li = document.createElement('li');
-					$li.className = 'li-item ingredient';
-					$li.id = el.id;
-					$li.innerHTML += `${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} `
+	// display
+	// const showListSearched = (option, data) => {
+	// 	const $ul = document.createElement('ul');
+	// 	if (option == 'ingredient') {
+	// 		$ingredient_options.innerHTML = ''
+	// 		const ingredientList = [];
+	// 		data.forEach((el) =>
+	// 			el.ingredients.forEach(ing => {
+	// 				const $li = document.createElement('li');
+	// 				$li.className = 'li-item ingredient';
+	// 				$li.id = el.id;
+	// 				$li.innerHTML += `${(ing.ingredient[0] + ing.ingredient.toLowerCase().slice(1))} `
 
-					ingredientList.push($li)
-				}
-				))
-		}
+	// 				ingredientList.push($li)
+	// 			}
+	// 			))
+	// 	}
 
 
-	}
+	// }
 	$ingredient_options.innerHTML = ''
 
 	const $ul = document.createElement('ul');

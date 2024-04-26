@@ -145,21 +145,24 @@ const searchValOnClick = (option) => {
 	debugger
 	let $el = null;
 	let element = null;
+	let lis = null;
 	if (option === 'ingredient') {
 		$el = document.querySelector('#ingredients>.options')
 		element = $search_vals[0]
+		lis = $el.querySelectorAll(".li-item");
 
 	}
 	else if (option === 'appareil') {
 		$el = document.querySelector('#appareils>.options')
 		element = $search_vals[1]
+		lis = $el.querySelectorAll(".li-item");
 	}
 	else if (option === 'ustensile') {
 		$el = document.querySelector('#ustensiles>.options')
 		element = $search_vals[2]
+		lis = $el.querySelectorAll(".li-item");
 	}
 
-	//$search_vals.forEach(ele => console.dir(ele))
 
 
 	element.addEventListener('click', ev => {
@@ -169,7 +172,7 @@ const searchValOnClick = (option) => {
 
 		const itemList = [];
 		//1
-		const lis = $el.querySelectorAll(".li-item");
+
 		if (ev.target.tagName == 'SPAN')
 			searchVal = ev.target.parentElement.firstElementChild.value;
 
