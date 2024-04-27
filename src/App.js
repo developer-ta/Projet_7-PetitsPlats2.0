@@ -25,7 +25,7 @@ class App {
 
 
 		//api url
-		const urlRecipes = './data/recipes.json'
+		const urlRecipes = '../data/recipes.json'
 		try {
 			this.data = await this.http.getDataList(urlRecipes);
 			console.log('data: ', this.data);
@@ -38,7 +38,7 @@ class App {
 
 			//set model 
 			this.recipeViewModel = new RecipeModel(this.data)
-				;
+
 			this.search = new searchAsync(this.recipeViewModel)
 		}
 
