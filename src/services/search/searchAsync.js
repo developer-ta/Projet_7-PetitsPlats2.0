@@ -25,10 +25,10 @@ export class searchAsync {
 
 		HomeController.mainDisplay(this._recipes);
 		debugger;
-		this.bindEvent();
+		this.bindEventSearch();
 	}
 
-	bindEvent() {
+	bindEventSearch() {
 		
 		let $searchInput = document.querySelector('#user_input');
 
