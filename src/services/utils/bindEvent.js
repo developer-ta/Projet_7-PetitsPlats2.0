@@ -165,6 +165,7 @@ const searchValOnClick = (option) => {
 
 	element.addEventListener('click', ev => {
 		debugger
+		ev.stopPropagation();
 		let searchVal = '';
 		let foundLis = '';
 
