@@ -21,7 +21,7 @@ export class searchAsync {
 	init() {
 
 		HomeController.mainDisplay(this._recipes);
-		;
+
 		this.bindEventSearch();
 
 	}
@@ -91,14 +91,13 @@ export class searchAsync {
 
 					foundIndexes.push(this._recipes[index]);
 				}
-
 			}
 
 			resolve(foundIndexes);
 		})
-
-
+		console.log('resultPromise: ', resultPromise);
 		return resultPromise;
+
 
 	}
 	getResultMultiThreadsSearch = async () => {
@@ -118,11 +117,6 @@ export class searchAsync {
 		const res = await Promise.all(promises);
 		return res.flat()
 	}
-
-
-
-
-
 
 
 }
