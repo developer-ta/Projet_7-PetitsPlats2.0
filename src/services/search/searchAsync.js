@@ -82,32 +82,33 @@ export class searchAsync {
 
 		const resultPromise = new Promise(resolve => {
 			for (let index = start; index < end; index++) {
+				const recipe = this._recipes[index];
 
-				const { name, ingredients, description } = this._recipes[index];
+				const { name, ingredients, description } = recipe;
 
 				if (name.search(this._valUserInReg) !== -1 ||
 					description.search(this._valUserInReg) !== -1 ||
 					ingredients.map(obj => obj.ingredient).toString().search(this._valUserInReg) !== -1) {
 
-					foundIndexes.push(this._recipes[index]);
+					foundIndexes.push(recipe);
 				}
 			}
 
 			resolve(foundIndexes);
 		})
-		console.log('resultPromise: ', resultPromise);
+
 		return resultPromise;
 
 
 	}
 	getResultMultiThreadsSearch = async () => {
 		debugger
-		const maxThread = 4;
+		const maxQuantityLot = 4;
 		const lengthArr = this._recipes.length
-		let lot = lengthArr / maxThread
+		let lot = lengthArr / maxQuantityLot
 		const promises = []
 
-		for (let i = 0; i < maxThread; i++) {
+		for (let i = 0; i < maxQuantityLot; i++) {
 			//Math.floor(lot + i * lot)
 			let lotStart = Math.floor(i * lot)//0:0,1:lot,2:2
 			let lotEnd = Math.floor((i + 1) * lot)

@@ -1,4 +1,4 @@
-//import { bindEvent } from "../../../../services/utils/bindEvent.js";
+
 import { isExciteOrNotEmpty } from "../../../../services/utils/validator.js";
 import { AdvancedSearch } from "./sectionAdvancedSearch/AdvancedSearch.js"
 import { SectionResult } from "./sectionResult/SectionResult.js";

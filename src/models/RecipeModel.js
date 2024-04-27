@@ -6,12 +6,10 @@ export class RecipeModel {
 		const { recipes } = data;
 		this._recipes = recipes;
 
-
 		this.isStocked = false;
 
 		//set recipes
 		this.recipes = this._recipes;
-
 	} 
 
 	get recipes() {
@@ -24,7 +22,6 @@ export class RecipeModel {
 
 		return (this.getLocalStorage('recipes'))
 	}
-
 
 
 	/**

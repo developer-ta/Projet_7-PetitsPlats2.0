@@ -25,7 +25,7 @@ class App {
 
 
 		//api url
-		const urlRecipes = '/data/recipes.json'
+		const urlRecipes = './data/recipes.json'
 		try {
 			this.data = await this.http.getDataList(urlRecipes);
 			console.log('data: ', this.data);

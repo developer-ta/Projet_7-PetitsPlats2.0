@@ -25,7 +25,6 @@ const $appareil_search = document.querySelector('#appareil-search')
 
 export const bindEvent = (data) => {
 	// on click event
-	
 	searchValOnClick('ingredient');
 	searchValOnClick('appareil');
 	searchValOnClick('ustensile');
