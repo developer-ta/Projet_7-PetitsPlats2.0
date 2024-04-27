@@ -167,14 +167,15 @@ const searchValOnClick = (option) => {
 
 	element.addEventListener('click', ev => {
 		debugger
+		ev.stopPropagation();
 		let searchVal = '';
 		let foundLis = '';
-
 		const itemList = [];
 		//1
 
 		if (ev.target.tagName == 'SPAN')
 			searchVal = ev.target.parentElement.firstElementChild.value;
+
 
 		else if (ev.target.tagName == 'I')
 			searchVal = ev.target.parentElement.parentElement.firstElementChild.value;

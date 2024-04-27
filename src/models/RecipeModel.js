@@ -7,7 +7,6 @@ export class RecipeModel {
 		this._recipes = recipes;
 
 		//build proto for search
-
 		this._prototypeSearchModel = this.prototypeSearchModelBuilder(this._recipes);
 
 		this.isStocked = false;

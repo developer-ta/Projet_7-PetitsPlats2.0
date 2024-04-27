@@ -7,10 +7,6 @@ export class searchAsync {
 
 		this.$searchInput = document.querySelector('#user_input');
 
-
-
-		// this.$search_btn = document.querySelector('.bi-search');
-
 		this._prototypeSearchModel = recipeViewModel.prototypeSearchModel
 
 		this._recipes = recipeViewModel.recipes
@@ -26,10 +22,10 @@ export class searchAsync {
 
 
 	init() {
+
 		HomeController.mainDisplay(this._recipes);
 		debugger;
 		this.bindEvent();
-
 	}
 
 	bindEvent() {
@@ -40,7 +36,6 @@ export class searchAsync {
 		$search_btn.addEventListener("click", async (ev) => {
 
 			debugger
-
 
 			ev.preventDefault();
 
@@ -66,14 +61,12 @@ export class searchAsync {
 			}
 			HomeController.mainDisplay(this.resultRecipes)
 
-
 		})
 	}
 
 	get ValUserInRegExp() {
 
 		let $searchInput = document.querySelector('#user_input');
-
 
 		let valInput = $searchInput.value
 
@@ -95,7 +88,7 @@ export class searchAsync {
 
 			this._prototypeSearchModel.forEach(
 				({ name, index }) => {
-					//let testIn = name.match(this._valUserInReg)
+					
 					if (name.match(this._valUserInReg)) {
 
 						i.push(index);
@@ -107,14 +100,12 @@ export class searchAsync {
 		}
 		console.log('indexList: ', this.indexList?.size);
 		return i
-
-
 	}
 
 	ingredientSearch = () => {
 
-
 		let i = []
+
 		if (this.ValUserInRegExp) {
 
 			this._prototypeSearchModel.forEach(
@@ -135,7 +126,7 @@ export class searchAsync {
 				}
 			)
 		}
-		console.log('indexList: ', i);
+		
 		return i
 	}
 
@@ -145,7 +136,7 @@ export class searchAsync {
 
 			this._prototypeSearchModel.forEach(
 				({ description, index }) => {
-					//let testIn = description.match(this._valUserInReg)
+					
 					if (description.match(this._valUserInReg)) {
 
 						i.push(index);
@@ -160,19 +151,17 @@ export class searchAsync {
 	}
 
 	searchResult = async () => {
-		// await this.nameSearch();
-		// const res = await this.ingredientSearch();
+		
 		const [name, ing, desc] = await Promise
 			.all([this.nameSearch(), this.ingredientSearch(), this.descriptionSearch()]);
-		console.log('indexList: ', this.indexList?.size);
+		
 		return [...name, ...ing, ...desc];
-
-
 
 	}
 
 	Result = (indexList => {
 		let res = []
+		
 		indexList.forEach(i => res.push(this._recipes.at(i)))
 
 		return res
