@@ -1,0 +1,27 @@
+{
+  "name": "projet_7-petitsplats2.0",
+  "version": "1.0.0",
+  "description": "P7 JS 2.0 Les petits plats\r ![image](https://github.com/developer-ta/Projet_7-PetitsPlats2.0/assets/78349294/620d6a94-5643-414d-afb4-3272001ce3ff)\r ![image](https://github.com/developer-ta/Projet_7-PetitsPlats2.0/assets/78349294/c7cbb830-4fff-43a2-bb10-2d07957ec073)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "http-server",
+    "eslint": "eslint src",
+    "standard": "standard && node my-tests.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.1.1",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "globals": "^15.0.0",
+    "semistandard": "^17.0.0",
+    "standard": "*"
+  }
+}

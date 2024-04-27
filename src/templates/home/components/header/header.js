@@ -1,8 +1,7 @@
 export const Header = () => {
+  const $container = document.querySelector('body')
 
-	const $container = document.querySelector('body');
-
-	const head_html = `<header class="container bg-image" name='header'>
+  const head_html = `<header class="container bg-image" name='header'>
 	<nav class="row-cols-2">
 		<span class="logo"> <svg width="328" height="40" viewBox="0 0 328 40" fill="none"
 				xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +56,7 @@ export const Header = () => {
 				</div>
 			</div>
 		</div>
-</header>`;
+</header>`
 
-	$container.insertAdjacentHTML('afterbegin', head_html);
+  $container.insertAdjacentHTML('afterbegin', head_html)
 }

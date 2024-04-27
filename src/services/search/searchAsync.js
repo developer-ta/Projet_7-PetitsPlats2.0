@@ -1,123 +1,105 @@
-import { HomeController } from "../../controllers/HomeController.js";
-import { isExciteOrNotEmpty } from "../utils/validator.js";
+import { HomeController } from '../../controllers/HomeController.js'
+import { isExciteOrNotEmpty } from '../utils/validator.js'
 
 export class searchAsync {
+  constructor (recipeViewModel) {
+    this.$searchInput = document.querySelector('#user_input')
 
-	constructor (recipeViewModel) {
+    this._recipes = recipeViewModel.recipes
 
+    this._valUserInReg = null
 
-		this.$searchInput = document.querySelector('#user_input');
+    this.resultRecipes = null
 
-		this._recipes = recipeViewModel.recipes
+    this.init()
+  }
 
-		this._valUserInReg = null;
+  init () {
+    HomeController.mainDisplay(this._recipes)
 
-		this.resultRecipes = null;
+    this.bindEventSearch()
+  }
 
-		this.init();
-	}
+  bindEventSearch () {
+    const $searchInput = document.querySelector('#user_input')
 
+    const $search_btn = document.querySelector('.bi-search')
+    $search_btn.addEventListener('click', async (ev) => {
+      ev.preventDefault()
 
-	init() {
+      if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
+        HomeController.mainDisplay(this._recipes)
+        return
+      }
 
-		HomeController.mainDisplay(this._recipes);
+      this.resultRecipes = []
 
-		this.bindEventSearch();
+      this.resultRecipes = await this.getResultMultiThreadsSearch()
 
-	}
+      if (isExciteOrNotEmpty(this.resultRecipes)) {
+        HomeController.mainDisplay(this.resultRecipes)
+      }
+      // by default this.resultRecipes=[]
+      HomeController.mainDisplay(this.resultRecipes)
+    })
+  }
 
-	bindEventSearch() {
+  get ValUserInRegExp () {
+    const $searchInput = document.querySelector('#user_input')
 
-		let $searchInput = document.querySelector('#user_input');
+    const valInput = $searchInput.value
 
-		let $search_btn = document.querySelector('.bi-search');
-		$search_btn.addEventListener("click", async (ev) => {
+    if (valInput.length >= 3) {
+      /// \bc(oc)\b/gim
+      // new RegExp(`\\b${valInput}\\w+`, "gim");
+      // new RegExp(`\\b${valInput}\\w`, "gim");
+      // new RegExp(`\\b${valInput}`, "gim");
+      return this._valUserInReg = new RegExp(`\\b${valInput}`, 'gim')
+    }
+    return null
+  }
 
-			ev.preventDefault();
+  searchUserIn = async (start, end) => {
+    
+    const foundIndexes = []
 
-			if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
-				HomeController.mainDisplay(this._recipes);
-				return;
-			}
+    if (!this.ValUserInRegExp) return foundIndexes
 
-			this.resultRecipes = [];
+    const resultPromise = new Promise(resolve => {
+      for (let index = start; index < end; index++) {
+        const recipe = this._recipes[index]
 
-			this.resultRecipes = await this.getResultMultiThreadsSearch();
+        const { name, ingredients, description } = recipe
 
-			if (isExciteOrNotEmpty(this.resultRecipes)) {
-
-				HomeController.mainDisplay(this.resultRecipes)
-
-			}
-			//by default this.resultRecipes=[]
-			HomeController.mainDisplay(this.resultRecipes)
-
-
-		})
-	}
-
-	get ValUserInRegExp() {
-
-		let $searchInput = document.querySelector('#user_input');
-
-
-		let valInput = $searchInput.value
-
-		if (valInput.length >= 3) {
-			///\bc(oc)\b/gim 
-			// new RegExp(`\\b${valInput}\\w+`, "gim");
-			// new RegExp(`\\b${valInput}\\w`, "gim");
-			// new RegExp(`\\b${valInput}`, "gim");
-			return this._valUserInReg = new RegExp(`\\b${valInput}`, "gim");
-		}
-		return null;
-
-	}
-
-	searchUserIn = async (start, end) => {
-		debugger
-		let foundIndexes = []
-
-		if (!this.ValUserInRegExp) return foundIndexes
-
-		const resultPromise = new Promise(resolve => {
-			for (let index = start; index < end; index++) {
-				const recipe = this._recipes[index];
-
-				const { name, ingredients, description } = recipe;
-
-				if (name.search(this._valUserInReg) !== -1 ||
+        if (name.search(this._valUserInReg) !== -1 ||
 					description.search(this._valUserInReg) !== -1 ||
 					ingredients.map(obj => obj.ingredient).toString().search(this._valUserInReg) !== -1) {
+          foundIndexes.push(recipe)
+        }
+      }
 
-					foundIndexes.push(recipe);
-				}
-			}
+      resolve(foundIndexes)
+    })
 
-			resolve(foundIndexes);
-		})
+    return resultPromise
+  
+  }
 
-		return resultPromise;
+  getResultMultiThreadsSearch = async () => {
+    
+    const maxQuantityLot = 4
+    const lengthArr = this._recipes.length
+    const lot = lengthArr / maxQuantityLot
+    const promises = []
 
-
-	}
-	getResultMultiThreadsSearch = async () => {
-		debugger
-		const maxQuantityLot = 4;
-		const lengthArr = this._recipes.length
-		let lot = lengthArr / maxQuantityLot
-		const promises = []
-
-		for (let i = 0; i < maxQuantityLot; i++) {
-			//Math.floor(lot + i * lot)
-			let lotStart = Math.floor(i * lot)//0:0,1:lot,2:2
-			let lotEnd = Math.floor((i + 1) * lot)
-			//res type []
-			promises.push(this.searchUserIn(lotStart, lotEnd))
-		}
-		const res = await Promise.all(promises);
-		return res.flat()
-	}
-
-
+    for (let i = 0; i < maxQuantityLot; i++) {
+      // Math.floor(lot + i * lot)
+      const lotStart = Math.floor(i * lot)// 0:0,1:lot,2:2
+      const lotEnd = Math.floor((i + 1) * lot)
+      // res type []
+      promises.push(this.searchUserIn(lotStart, lotEnd))
+    }
+    const res = await Promise.all(promises)
+    return res.flat()
+  }
 }
