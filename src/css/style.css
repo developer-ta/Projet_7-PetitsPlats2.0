@@ -27,8 +27,10 @@
 .logo {
 	width: 207px;
 	height: 25.26px;
-	animation-timing-function: ease-out;
-	animation-duration: 300ms;
+	-webkit-animation-timing-function: ease-out;
+	        animation-timing-function: ease-out;
+	-webkit-animation-duration: 300ms;
+	        animation-duration: 300ms;
 
 }
 
@@ -49,7 +51,18 @@
 	justify-content: center;
 	align-items: center;
 	}
+.mgError {
+	display: block;
+	color: red;
+	font-size: x-large;
+	background: bisque;
+	margin-top: 5px;
 
+	padding: 12px;
+
+	position: relative;
+	right: 22%;
+	}
 .input-group.flex-nowrap {
 
 	position: relative;
@@ -170,6 +183,8 @@ p {
 .options {
 	width: 100%;
 	overflow-y: clip;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 	display: none;
 
@@ -258,7 +273,8 @@ html {
 }
 
 .card-img-top {
-	object-fit: cover;
+	-o-object-fit: cover;
+	   object-fit: cover;
 	height: 270px;
 }
 
@@ -273,7 +289,11 @@ html {
 .row.label-search {
 	justify-content: center;
 	align-items: baseline;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
 	width: fit-content;
 }
 
@@ -283,6 +303,8 @@ h3 {
 }
 
 #ingredients {
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 	width: 20%;
 }
@@ -293,6 +315,8 @@ h3 {
 }
 
 #appareils {
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 	width: 20%;
 }
@@ -336,6 +360,8 @@ h3 {
 	}
 
 #ustensiles {
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 	width: 20%;
 }

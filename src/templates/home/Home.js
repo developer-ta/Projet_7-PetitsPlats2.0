@@ -1,10 +1,10 @@
-import { bindEvent } from '../../services/utils/bindEvent.js'
-import { Header } from './components/header/header.js'
-import { Main } from './components/main/Main.js'
+import { bindEvent } from '../../services/utils/bindEvent.js';
+import { Header } from './components/header/header.js';
+import { Main } from './components/main/Main.js';
 
 export const Home = (datalist) => {
-  if (document.querySelector('header') == null) Header()
+  if (document.querySelector('header') == null) Header();
 
-  Main(datalist)
-  bindEvent(datalist)
-}
+  Main(datalist);
+  bindEvent(datalist);
+};
