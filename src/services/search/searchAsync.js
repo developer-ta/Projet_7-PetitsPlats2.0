@@ -1,173 +1,140 @@
-import { HomeController } from "../../controllers/HomeController.js";
-import { isExciteOrNotEmpty } from "../utils/validator.js";
+import { HomeController } from '../../controllers/HomeController.js';
+import { isExciteOrNotEmpty } from '../utils/validator.js';
 
 export class searchAsync {
+  constructor(recipeViewModel) {
+    this.$searchInput = document.querySelector('#user_input');
 
-	constructor (recipeViewModel) {
+    this._prototypeSearchModel = recipeViewModel.prototypeSearchModel;
 
-		this.$searchInput = document.querySelector('#user_input');
+    this._recipes = recipeViewModel.recipes;
 
-		this._prototypeSearchModel = recipeViewModel.prototypeSearchModel
+    this._valUserInReg = null;
 
-		this._recipes = recipeViewModel.recipes
+    this.indexList = null;
 
-		this._valUserInReg = null;
+    this.resultRecipes = null;
 
-		this.indexList = null;
+    this.init();
+  }
+  init() {
+    HomeController.mainDisplay(this._recipes);
 
-		this.resultRecipes = null;
+    this.bindEventSearch();
+  }
 
-		this.init();
-	}
+  bindEventSearch() {
+    let $searchInput = document.querySelector('#user_input');
 
+    let $search_btn = document.querySelector('.bi-search');
 
-	init() {
+    $search_btn.addEventListener('click', async (ev) => {
+      ev.preventDefault();
 
-		HomeController.mainDisplay(this._recipes);
-		debugger;
-		this.bindEventSearch();
-	}
+      if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
+        HomeController.mainDisplay(this._recipes);
+        return;
+      }
 
-	bindEventSearch() {
-		
-		let $searchInput = document.querySelector('#user_input');
+      this.indexList?.clear();
+      this.resultRecipes = [];
 
-		let $search_btn = document.querySelector('.bi-search');
-		$search_btn.addEventListener("click", async (ev) => {
+      let res = await this.searchResult();
 
-			debugger
+      if (res.length > 0) {
+        this.indexList = new Set(res);
+        this.resultRecipes = this.Result(this.indexList);
 
-			ev.preventDefault();
+        if (isExciteOrNotEmpty(this.resultRecipes)) HomeController.mainDisplay(this.resultRecipes);
+      }
+      HomeController.mainDisplay(this.resultRecipes);
+    });
+  }
 
+  get ValUserInRegExp() {
+    debugger;
+    let $searchInput = document.querySelector('#user_input');
+    let $searchWrapper = document.querySelector('.wrapper');
+    let $mgErrorSpan = document.querySelector('.mgError');
+    const mgError = 'Veuillez entrer Caractère valide ! Veuillez réessayer !';
+    let valInput = $searchInput.value;
 
-			if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
-				HomeController.mainDisplay(this._recipes);
-				return;
+    let isValideInStr = new RegExp('^[a-zA-Z]+$').test(valInput);
+    if (!isValideInStr) {
+      if (!$mgErrorSpan) {
+        $searchWrapper.insertAdjacentHTML('afterend', `<span class="mgError">${mgError}</span>`);
+      } else {
+        $mgErrorSpan.style.display = 'block';
+      }
+    } else if (valInput.length >= 3 && isValideInStr) {
+      $mgErrorSpan.style.display = 'none';
 
-			}
+      ///\bc(oc)\b/gim
+      // new RegExp(`\\b${valInput}\\w+`, "gim");
+      // new RegExp(`\\b${valInput}\\w`, "gim");
+      // new RegExp(`\\b${valInput}`, "gim");
+      return (this._valUserInReg = new RegExp(`\\b${valInput}`, 'gim'));
+    }
+    return null;
+  }
 
-			this.indexList?.clear();
-			this.resultRecipes = [];
+  nameSearch = () => {
+    let i = [];
+    if (this.ValUserInRegExp) {
+      this._prototypeSearchModel.forEach(({ name, index }) => {
+        if (name.match(this._valUserInReg)) {
+          i.push(index);
+        }
+      });
+    }
 
-			let res = await this.searchResult();
+    return i;
+  };
 
-			if (res.length > 0) {
+  ingredientSearch = () => {
+    let i = [];
 
-				this.indexList = new Set(res);
-				this.resultRecipes = this.Result(this.indexList)
+    if (this.ValUserInRegExp) {
+      this._prototypeSearchModel.forEach(({ ingredients, index }) => {
+        ingredients.forEach((ingredient) => {
+          if (ingredient.match(this._valUserInReg)) {
+            i.push(index);
+          }
+        });
+      });
+    }
 
-				if (isExciteOrNotEmpty(this.resultRecipes)) HomeController.mainDisplay(this.resultRecipes)
+    return i;
+  };
 
-			}
-			HomeController.mainDisplay(this.resultRecipes)
+  descriptionSearch() {
+    let i = [];
+    if (this.ValUserInRegExp) {
+      this._prototypeSearchModel.forEach(({ description, index }) => {
+        if (description.match(this._valUserInReg)) {
+          i.push(index);
+        }
+      });
+    }
 
-		})
-	}
+    return i;
+  }
 
-	get ValUserInRegExp() {
+  searchResult = async () => {
+    const [name, ing, desc] = await Promise.all([
+      this.nameSearch(),
+      this.ingredientSearch(),
+      this.descriptionSearch(),
+    ]);
 
-		let $searchInput = document.querySelector('#user_input');
+    return [...name, ...ing, ...desc];
+  };
 
-		let valInput = $searchInput.value
+  Result = (indexList) => {
+    let res = [];
 
-		if (valInput.length >= 3) {
-			///\bc(oc)\b/gim 
-			// new RegExp(`\\b${valInput}\\w+`, "gim");
-			// new RegExp(`\\b${valInput}\\w`, "gim");
-			// new RegExp(`\\b${valInput}`, "gim");
-			return this._valUserInReg = new RegExp(`\\b${valInput}`, "gim");
-		}
-		return null;
+    indexList.forEach((i) => res.push(this._recipes.at(i)));
 
-	}
-
-	nameSearch = () => {
-
-		let i = []
-		if (this.ValUserInRegExp) {
-
-			this._prototypeSearchModel.forEach(
-				({ name, index }) => {
-					
-					if (name.match(this._valUserInReg)) {
-
-						i.push(index);
-
-					}
-
-				}
-			)
-		}
-		console.log('indexList: ', this.indexList?.size);
-		return i
-	}
-
-	ingredientSearch = () => {
-
-		let i = []
-
-		if (this.ValUserInRegExp) {
-
-			this._prototypeSearchModel.forEach(
-
-				({ ingredients, index }) => {
-
-					ingredients.forEach(ingredient => {
-
-						if (ingredient.match(this._valUserInReg)) {
-
-							i.push(index);
-
-						}
-
-					}
-					)
-
-				}
-			)
-		}
-		
-		return i
-	}
-
-	descriptionSearch() {
-		let i = []
-		if (this.ValUserInRegExp) {
-
-			this._prototypeSearchModel.forEach(
-				({ description, index }) => {
-					
-					if (description.match(this._valUserInReg)) {
-
-						i.push(index);
-
-					}
-
-				}
-			)
-		}
-
-		return i
-	}
-
-	searchResult = async () => {
-		
-		const [name, ing, desc] = await Promise
-			.all([this.nameSearch(), this.ingredientSearch(), this.descriptionSearch()]);
-		
-		return [...name, ...ing, ...desc];
-
-	}
-
-	Result = (indexList => {
-		let res = []
-		
-		indexList.forEach(i => res.push(this._recipes.at(i)))
-
-		return res
-	})
-
-
-
-
+    return res;
+  };
 }
