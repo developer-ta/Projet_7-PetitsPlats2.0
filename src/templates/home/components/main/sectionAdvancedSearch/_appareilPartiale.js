@@ -15,7 +15,7 @@ export const appareilsDisplay = (data) => {
   });
   const textContents = applianceList.map((el) => el.textContent.toLowerCase());
   const uniqueElements = applianceList.filter(
-    (el, i) => i == textContents.indexOf(el.textContent.toLowerCase())
+    (el, i) => i == textContents.indexOf(el.textContent.toLowerCase()),
   );
   uniqueElements.sort((a, b) => a.textContent.localeCompare(b.textContent));
   uniqueElements.forEach((li) => $ul.appendChild(li));

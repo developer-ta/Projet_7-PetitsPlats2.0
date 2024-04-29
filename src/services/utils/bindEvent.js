@@ -37,56 +37,52 @@ const labelSearchesCloseOnClick = (dataList) => {
   // add event on click
 
   let $el = null;
-  $labelSearches.forEach((i) =>
-    i.lastElementChild.addEventListener('click', (ev) => {
-      ev.preventDefault();
+  $labelSearches.forEach((i) => i.lastElementChild.addEventListener('click', (ev) => {
+    ev.preventDefault();
 
-      if (ev.target.tagName == 'I') {
-        $el = ev.target.parentElement.parentElement;
-        $el.style.display = 'none';
-      } else {
-        $el = ev.target.parentElement;
-        $el.style.display !== 'flex' ? 'flex' : 'none';
-      }
+    if (ev.target.tagName == 'I') {
+      $el = ev.target.parentElement.parentElement;
+      $el.style.display = 'none';
+    } else {
+      $el = ev.target.parentElement;
+      $el.style.display !== 'flex' ? 'flex' : 'none';
+    }
 
-      $el.firstElementChild.textContent = '';
-      $el.idKey = '';
+    $el.firstElementChild.textContent = '';
+    $el.idKey = '';
 
-      filterBySelectedKey(dataList);
-    })
-  );
+    filterBySelectedKey(dataList);
+  }));
 };
 
 const showBySelectedKeyWord = (dataList) => {
   const lis = document.querySelectorAll('.li-item');
-  lis.forEach((x) =>
-    x.addEventListener('click', (ev) => {
-      ev.preventDefault();
+  lis.forEach((x) => x.addEventListener('click', (ev) => {
+    ev.preventDefault();
 
-      let $el = null;
-      let event = null;
-      if (ev.target.className.includes('ingredient')) {
-        $el = document.querySelector('.labelSearch-ingredient');
+    let $el = null;
+    let event = null;
+    if (ev.target.className.includes('ingredient')) {
+      $el = document.querySelector('.labelSearch-ingredient');
 
-        $display_options_spanIng.click();
-        event = ev;
-      } else if (ev.target.className.includes('ustensile')) {
-        $el = document.querySelector('.labelSearch-ustensile');
+      $display_options_spanIng.click();
+      event = ev;
+    } else if (ev.target.className.includes('ustensile')) {
+      $el = document.querySelector('.labelSearch-ustensile');
 
-        $display_options_spanUst.click();
+      $display_options_spanUst.click();
 
-        event = ev;
-      } else if (ev.target.className.includes('appareil')) {
-        $el = document.querySelector('.labelSearch-appareil');
+      event = ev;
+    } else if (ev.target.className.includes('appareil')) {
+      $el = document.querySelector('.labelSearch-appareil');
 
-        $display_options_spanApp.click();
+      $display_options_spanApp.click();
 
-        event = ev;
-      }
+      event = ev;
+    }
 
-      labelSearchShow($el, event, dataList);
-    })
-  );
+    labelSearchShow($el, event, dataList);
+  }));
 
   const labelSearchShow = ($labelSearch, event, dataList) => {
     $labelSearch.firstElementChild.textContent = event.target.textContent;
@@ -140,9 +136,7 @@ const searchValOnClick = (option) => {
       searchVal = ev.target.parentElement.parentElement.firstElementChild.value;
     }
 
-    lis.forEach((el) =>
-      el.textContent.toLowerCase().startsWith(`${searchVal}`) ? itemList.push(el) : ''
-    );
+    lis.forEach((el) => (el.textContent.toLowerCase().startsWith(`${searchVal}`) ? itemList.push(el) : ''));
 
     // display
     foundLis = itemList.sort((a, b) => a.textContent.localeCompare(b.textContent));
@@ -157,28 +151,24 @@ const searchValOnClick = (option) => {
 $display_options_spanIng.addEventListener('click', (ev) => {
   ev.stopPropagation();
 
-  $ingredient_options.style.display =
-    $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
+  $ingredient_options.style.display = $ingredient_options.style.display !== 'flex' ? 'flex' : 'none';
   $ingredient_search.style.display = $ingredient_search.style.display !== 'flex' ? 'flex' : 'none';
   $ingredient.style.height = 'fit-content';
-  $display_options_spanIng.firstChild.className =
-    $display_options_spanIng.firstChild.className !== 'bi bi-chevron-up'
-      ? 'bi bi-chevron-up'
-      : 'bi bi-chevron-down';
+  $display_options_spanIng.firstChild.className = $display_options_spanIng.firstChild.className !== 'bi bi-chevron-up'
+    ? 'bi bi-chevron-up'
+    : 'bi bi-chevron-down';
 });
 
 // bind event display ustensile
 $display_options_spanUst.addEventListener('click', (ev) => {
   ev.stopPropagation();
 
-  $ustensiles_options.style.display =
-    $ustensiles_options.style.display !== 'flex' ? 'flex' : 'none';
+  $ustensiles_options.style.display = $ustensiles_options.style.display !== 'flex' ? 'flex' : 'none';
   $ustensile_search.style.display = $ustensile_search.style.display !== 'flex' ? 'flex' : 'none';
   $ustensile.style.height = 'fit-content';
-  $display_options_spanUst.firstChild.className =
-    $display_options_spanUst.firstChild.className !== 'bi bi-chevron-up'
-      ? 'bi bi-chevron-up'
-      : 'bi bi-chevron-down';
+  $display_options_spanUst.firstChild.className = $display_options_spanUst.firstChild.className !== 'bi bi-chevron-up'
+    ? 'bi bi-chevron-up'
+    : 'bi bi-chevron-down';
 });
 
 // bind event display App
@@ -188,8 +178,7 @@ $display_options_spanApp.addEventListener('click', (ev) => {
   $appareils_options.style.display = $appareils_options.style.display !== 'flex' ? 'flex' : 'none';
   $appareil_search.style.display = $appareil_search.style.display !== 'flex' ? 'flex' : 'none';
   $appareil.style.height = 'fit-content';
-  $display_options_spanApp.firstChild.className =
-    $display_options_spanApp.firstChild.className !== 'bi bi-chevron-up'
-      ? 'bi bi-chevron-up'
-      : 'bi bi-chevron-down';
+  $display_options_spanApp.firstChild.className = $display_options_spanApp.firstChild.className !== 'bi bi-chevron-up'
+    ? 'bi bi-chevron-up'
+    : 'bi bi-chevron-down';
 });

@@ -1,9 +1,9 @@
-import { HomeController } from '../../controllers/HomeController.js';
-import { isExciteOrNotEmpty } from '../utils/validator.js';
+import { HomeController } from "../../controllers/HomeController.js";
+import { isExciteOrNotEmpty } from "../utils/validator.js";
 
 export class searchAsync {
   constructor(recipeViewModel) {
-    this.$searchInput = document.querySelector('#user_input');
+    this.$searchInput = document.querySelector("#user_input");
 
     this._recipes = recipeViewModel.recipes;
 
@@ -21,10 +21,10 @@ export class searchAsync {
   }
 
   bindEventSearch() {
-    const $searchInput = document.querySelector('#user_input');
+    const $searchInput = document.querySelector("#user_input");
 
-    const $search_btn = document.querySelector('.bi-search');
-    $search_btn.addEventListener('click', async (ev) => {
+    const $search_btn = document.querySelector(".bi-search");
+    $search_btn.addEventListener("click", async (ev) => {
       ev.preventDefault();
 
       if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
@@ -45,26 +45,28 @@ export class searchAsync {
   }
 
   get ValUserInRegExp() {
-    debugger;
-    let $searchInput = document.querySelector('#user_input');
-    let $searchWrapper = document.querySelector('.wrapper');
-    let $mgErrorSpan = document.querySelector('.mgError');
+    let $searchInput = document.querySelector("#user_input");
+    let $searchWrapper = document.querySelector(".wrapper");
+    let $mgErrorSpan = document.querySelector(".mgError");
 
-    const mgError = 'Veuillez entrer Caractère valide ! Veuillez réessayer !';
+    const mgError = "Veuillez entrer Caractère valide ! Veuillez réessayer !";
     let valInput = $searchInput.value;
-    let isValideInStr = new RegExp('^[a-zA-Z]+$').test(valInput);
+    let isValideInStr = new RegExp("^[a-zA-Z]+$").test(valInput);
     if (!isValideInStr) {
       if (!$mgErrorSpan)
-        $searchWrapper.insertAdjacentHTML('afterend', `<span class="mgError">${mgError}</span>`);
-      else $mgErrorSpan.style.display = 'block';
+        $searchWrapper.insertAdjacentHTML(
+          "afterend",
+          `<span class="mgError">${mgError}</span>`,
+        );
+      else $mgErrorSpan.style.display = "block";
     } else if (valInput.length >= 3 && isValideInStr) {
-      $mgErrorSpan.style.display = 'none';
+      if ($mgErrorSpan) $mgErrorSpan.style.display = "none";
 
       ///\bc(oc)\b/gim
       // new RegExp(`\\b${valInput}\\w+`, "gim");
       // new RegExp(`\\b${valInput}\\w`, "gim");
       // new RegExp(`\\b${valInput}`, "gim");
-      return (this._valUserInReg = new RegExp(`\\b${valInput}`, 'gim'));
+      return (this._valUserInReg = new RegExp(`\\b${valInput}`, "gim"));
     }
     return null;
   }

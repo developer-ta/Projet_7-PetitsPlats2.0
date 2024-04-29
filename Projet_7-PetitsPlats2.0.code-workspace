@@ -1,0 +1,12 @@
+{
+  "folders": [
+	{
+		"name": "Projet_7-PetitsPlats2.0",
+		"path": "."
+	}
+],
+  "settings": {
+    "editor.tabSize": 5,
+    "editor.formatOnSave": true
+  }
+}
