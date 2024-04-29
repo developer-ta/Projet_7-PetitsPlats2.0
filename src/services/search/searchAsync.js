@@ -28,7 +28,8 @@ export class searchAsync {
       ev.preventDefault();
 
       if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
-        HomeController.mainDisplay(this._recipes);
+        if (this.ValUserInRegExp === null) HomeController.mainDisplay([]);
+        else HomeController.mainDisplay(this._recipes);
         return;
       }
 
@@ -52,6 +53,7 @@ export class searchAsync {
     const mgError = "Veuillez entrer Caractère valide ! Veuillez réessayer !";
     let valInput = $searchInput.value;
     let isValideInStr = new RegExp("^[a-zA-Z]+$").test(valInput);
+
     if (!isValideInStr) {
       if (!$mgErrorSpan)
         $searchWrapper.insertAdjacentHTML(
