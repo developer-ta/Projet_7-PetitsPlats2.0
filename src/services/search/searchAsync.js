@@ -28,7 +28,8 @@ export class searchAsync {
       ev.preventDefault();
 
       if ($searchInput.value.length < 3 && isExciteOrNotEmpty(this._recipes)) {
-        HomeController.mainDisplay(this._recipes);
+        if (this.ValUserInRegExp) HomeController.mainDisplay([]);
+        else HomeController.mainDisplay(this._recipes);
         return;
       }
 

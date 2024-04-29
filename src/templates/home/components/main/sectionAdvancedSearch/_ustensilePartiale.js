@@ -1,19 +1,21 @@
 const ustensileDisplay = (data) => {
   // Dom
-  const $ustensilesOptions = document.querySelector('#ustensiles>.options');
+  const $ustensilesOptions = document.querySelector("#ustensiles>.options");
 
   // display
 
-  $ustensilesOptions.innerHTML = '';
-  const $ul = document.createElement('ul');
+  $ustensilesOptions.innerHTML = "";
+  const $ul = document.createElement("ul");
   const ustensileList = [];
-  data.forEach((el) => el.ustensils.forEach((ust) => {
-    const $li = document.createElement('li');
-    $li.className = 'li-item ustensile';
-    $li.id = el.id;
-    $li.innerHTML += `${ust[0].toUpperCase() + ust.slice(1).toLowerCase()}`;
-    ustensileList.push($li);
-  }));
+  data.forEach((el) =>
+    el.ustensils.forEach((ust) => {
+      const $li = document.createElement("li");
+      $li.className = "li-item ustensile";
+      $li.id = el.id;
+      $li.innerHTML += `${ust[0].toUpperCase() + ust.slice(1).toLowerCase()}`;
+      ustensileList.push($li);
+    }),
+  );
 
   // filter index unique
   const textContents = ustensileList.map((el) => el.textContent.toLowerCase());
@@ -26,4 +28,4 @@ const ustensileDisplay = (data) => {
   $ustensilesOptions.appendChild($ul);
 };
 
-export default { ustensileDisplay };
+export { ustensileDisplay };
