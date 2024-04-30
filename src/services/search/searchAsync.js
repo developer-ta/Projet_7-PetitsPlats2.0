@@ -24,6 +24,7 @@ export class searchAsync {
     const $searchInput = document.querySelector("#user_input");
 
     const $search_btn = document.querySelector(".bi-search");
+
     $search_btn.addEventListener("click", async (ev) => {
       ev.preventDefault();
       if (
@@ -118,8 +119,7 @@ export class searchAsync {
     const promises = [];
 
     for (let i = 0; i < maxQuantityLot; i++) {
-      // Math.floor(lot + i * lot)
-      const lotStart = Math.floor(i * lot); // 0:0,1:lot,2:2
+      const lotStart = Math.floor(i * lot);
       const lotEnd = Math.floor((i + 1) * lot);
       // res type []
       promises.push(this.searchUserIn(lotStart, lotEnd));
