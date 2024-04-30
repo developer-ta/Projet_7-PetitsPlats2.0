@@ -1,4 +1,4 @@
-//1
+// 1
 
 function isExciteOrNotEmpty(something) {
   if (something && something.length > 0) {
@@ -7,5 +7,5 @@ function isExciteOrNotEmpty(something) {
   return false;
 }
 
-//export
+// export
 export { isExciteOrNotEmpty };

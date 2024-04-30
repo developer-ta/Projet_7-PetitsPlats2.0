@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "htmlWhitespaceSensitivity": "css",
+    "insertPragma": false,
+    "singleAttributePerLine": false,
+    "bracketSameLine": false,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
+    "printWidth": 120,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false,
+    "embeddedLanguageFormatting": "auto",
+    "vueIndentScriptAndStyle": false,
+
+    "parser": "babel"
+  }
+}
