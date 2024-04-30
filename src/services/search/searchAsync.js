@@ -45,7 +45,7 @@ export class searchAsync {
 
       this.resultRecipes = [];
 
-      this.resultRecipes = await this.getResultMultiThreadsSearch();
+      this.resultRecipes = await this.getResultByChunkListAsync();
 
       if (isExciteOrNotEmpty(this.resultRecipes)) {
         HomeController.mainDisplay(this.resultRecipes);
@@ -112,7 +112,7 @@ export class searchAsync {
     return resultPromise;
   };
 
-  getResultMultiThreadsSearch = async () => {
+  getResultByChunkListAsync = async () => {
     const maxQuantityLot = 4;
     const lengthArr = this._recipes.length;
     const lot = lengthArr / maxQuantityLot;
