@@ -6,7 +6,9 @@ export class RecipeModel {
     this._recipes = recipes;
 
     //build proto for search
-    this._prototypeSearchModel = this.prototypeSearchModelBuilder(this._recipes);
+    this._prototypeSearchModel = this.prototypeSearchModelBuilder(
+      this._recipes,
+    );
 
     this.isStocked = false;
 
@@ -22,14 +24,14 @@ export class RecipeModel {
       return this._recipes;
     }
 
-    return this.getLocalStorage('recipes');
+    return this.getLocalStorage("recipes");
   }
 
   get prototypeSearchModel() {
     if (isExciteOrNotEmpty(this._prototypeSearchModel)) {
       return this._prototypeSearchModel;
     }
-    return this.getLocalStorage('recipesPrototype');
+    return this.getLocalStorage("recipesPrototype");
   }
 
   /**
@@ -37,11 +39,11 @@ export class RecipeModel {
    */
 
   set recipes(recipes) {
-    this.setLocalStorage('recipes', recipes);
+    this.setLocalStorage("recipes", recipes);
   }
 
   set prototypeSearchModel(prototypeSearch) {
-    this.setLocalStorage('recipesPrototype', prototypeSearch);
+    this.setLocalStorage("recipesPrototype", prototypeSearch);
   }
 
   setLocalStorage(key, recipes) {
@@ -70,29 +72,31 @@ export class RecipeModel {
   prototypeSearchModelBuilder(recipes) {
     if (isExciteOrNotEmpty(recipes)) {
       //build search obj list
-      const searchList = recipes.map(({ name, ingredients, description }, index) => {
-        //interface search obj
-        const searchObj = {
-          index: 0,
-          name: '',
-          ingredients: [],
-          description: '',
-        };
+      const searchList = recipes.map(
+        ({ name, ingredients, description }, index) => {
+          //interface search obj
+          const searchObj = {
+            index: 0,
+            name: "",
+            ingredients: [],
+            description: "",
+          };
 
-        //tack only ingredient list
-        searchObj.ingredients = ingredients
-          .map(({ ingredient }) => ingredient)
-          .sort((a, b) => {
-            a.localeCompare(b);
-          });
+          //tack only ingredient list
+          searchObj.ingredients = ingredients
+            .map(({ ingredient }) => ingredient)
+            .sort((a, b) => {
+              a.localeCompare(b);
+            });
 
-        //index use for find element
-        searchObj.index = index;
-        searchObj.description = description;
-        searchObj.name = name;
+          //index use for find element
+          searchObj.index = index;
+          searchObj.description = description;
+          searchObj.name = name;
 
-        return searchObj;
-      });
+          return searchObj;
+        },
+      );
 
       return searchList.sort((a, b) => a.name.localeCompare(b.name));
     }
