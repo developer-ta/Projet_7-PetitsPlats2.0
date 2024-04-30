@@ -21,24 +21,24 @@ export class searchAsync {
   }
 
   bindEventSearch() {
-    const $searchInput = document.querySelector("#user_input");
+    let $searchInput = document.querySelector("#user_input");
 
-    const $search_btn = document.querySelector(".bi-search");
+    let $search_btn = document.querySelector(".bi-search");
+
+    let isDataExcite = isExciteOrNotEmpty(this._recipes);
 
     $search_btn.addEventListener("click", async (ev) => {
       ev.preventDefault();
-      if (
-        $searchInput.value.length === 0 &&
-        isExciteOrNotEmpty(this._recipes)
-      ) {
+      if ($searchInput.value.length === 0 && isDataExcite) {
         HomeController.mainDisplay(this._recipes);
         return;
-      } else if (
-        $searchInput.value.length < 3 &&
-        isExciteOrNotEmpty(this._recipes)
-      ) {
+      } else if ($searchInput.value.length < 3 && isDataExcite) {
         debugger;
-        if (this.ValUserInRegExp === null) HomeController.mainDisplay([]);
+        if (
+          this.ValUserInRegExp === null &&
+          new RegExp("^[a-zA-Z]+$").test($searchInput.value)
+        )
+          HomeController.mainDisplay([]);
         else HomeController.mainDisplay(this._recipes);
         return;
       }
