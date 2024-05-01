@@ -47,7 +47,6 @@ export class searchAsync {
         return;
       }
 
-      this.indexList?.clear();
       this.resultRecipes = [];
 
       let res = await this.searchResult();
@@ -121,7 +120,7 @@ export class searchAsync {
     return i;
   };
 
-  descriptionSearch() {
+  descriptionSearch = () => {
     let i = [];
     if (this.ValUserInRegExp) {
       this._prototypeSearchModel.forEach(({ description, index }) => {
@@ -132,23 +131,21 @@ export class searchAsync {
     }
 
     return i;
-  }
+  };
 
   searchResult = async () => {
-    const [name, ing, desc] = await Promise.all([
+    const promises = [
       this.nameSearch(),
       this.ingredientSearch(),
       this.descriptionSearch(),
-    ]);
-
-    return [...name, ...ing, ...desc];
+    ];
+    const results = await Promise.all(promises);
+    return results.flat();
   };
 
   Result = (indexList) => {
     let res = [];
-
     indexList.forEach((i) => res.push(this._recipes.at(i)));
-
     return res;
   };
 }

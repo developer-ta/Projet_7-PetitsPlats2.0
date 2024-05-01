@@ -393,264 +393,108 @@ const { recipes } = {
     },
   ],
 };
-const prototypeSearchModel = function prototypeSearchModelBuilder(recipes) {
-  debugger;
-  if (isExciteOrNotEmptyA(recipes)) {
-    //build search obj list
-    const searchList = recipes.map(
-      ({ name, ingredients, description }, index) => {
-        //interface search obj
-        const searchObj = {
-          index: 0,
-          name: "",
-          ingredients: [],
-          description: "",
-        };
+// const prototypeSearchModel = function prototypeSearchModelBuilder(recipes) {
+//
+//   if (isExciteOrNotEmptyA(recipes)) {
+//     //build search obj list
+//     const searchList = recipes.map(
+//       ({ name, ingredients, description }, index) => {
+//         //interface search obj
+//         const searchObj = {
+//           index: 0,
+//           name: "",
+//           ingredients: [],
+//           description: "",
+//         };
 
-        //tack only ingredient list
-        searchObj.ingredients = ingredients
-          .map(({ ingredient }) => ingredient)
-          .sort((a, b) => {
-            a.localeCompare(b);
-          });
+//         //tack only ingredient list
+//         searchObj.ingredients = ingredients
+//           .map(({ ingredient }) => ingredient)
+//           .sort((a, b) => {
+//             a.localeCompare(b);
+//           });
 
-        //index use for find element
-        searchObj.index = index;
-        searchObj.description = description;
-        searchObj.name = name;
+//         //index use for find element
+//         searchObj.index = index;
+//         searchObj.description = description;
+//         searchObj.name = name;
 
-        return searchObj;
-      },
-    );
+//         return searchObj;
+//       },
+//     );
 
-    return searchList.sort((a, b) => a.name.localeCompare(b.name));
+//     return searchList.sort((a, b) => a.name.localeCompare(b.name));
+//   }
+
+//   return null;
+// };
+// let _valUserInReg = new RegExp(`\\b${userIn}`, "gim");
+// let ValUserInRegExp = _valUserInReg;
+// let _recipes = recipes;
+//
+
+//_____________________________________________________--------------------
+
+class searchAsyncB {
+  constructor() {
+    this.$searchInput = document.querySelector("#user_input");
+
+    this._recipes = recipes;
+
+    this.ValUserInRegExp = new RegExp(`\\b${userIn}`, "gim");
+
+    this.resultRecipes = null;
+
+    this.init();
   }
 
-  return null;
-};
-let _valUserInReg = new RegExp(`\\b${userIn}`, "gim");
-let ValUserInRegExp = _valUserInReg;
-let _recipes = recipes;
-let _prototypeSearchModel = prototypeSearchModel(_recipes);
-//test Solution A
-// class searchAsyncA {
-//   constructor(userIn, recipes, prototypeSearchMode) {
-//     _valUserInReg = new RegExp(`\\b${userIn}`, "gim");
-//     ValUserInRegExp = _valUserInReg;
-//     _prototypeSearchModel = prototypeSearchMode;
-//     _recipes = recipes;
-//     this_indexList = new Set(searchResult());
-//     Result(this_indexList);
-//   }
-
-//   nameSearch = () => {
-//     let i = [];
-//     if (ValUserInRegExp) {
-//       _prototypeSearchModel.forEach(({ name, index }) => {
-//         if (name.match(_valUserInReg)) {
-//           i.push(index);
-//         }
-//       });
-//     }
-
-//     return i;
-//   };
-
-//   ingredientSearch = () => {
-//     let i = [];
-
-//     if (ValUserInRegExp) {
-//       _prototypeSearchModel.forEach(({ ingredients, index }) => {
-//         ingredients.forEach((ingredient) => {
-//           if (ingredient.match(_valUserInReg)) {
-//             i.push(index);
-//           }
-//         });
-//       });
-//     }
-
-//     return i;
-//   };
-
-//   descriptionSearch = () => {
-//     let i = [];
-//     if (ValUserInRegExp) {
-//       _prototypeSearchModel.forEach(({ description, index }) => {
-//         if (description.match(_valUserInReg)) {
-//           i.push(index);
-//         }
-//       });
-//     }
-
-//     return i;
-//   };
-
-//   searchResult = async () => {
-//     const promises = [
-//       nameSearch(),
-//       ingredientSearch(),
-//       descriptionSearch(),
-//     ];
-//     const results = await Promise.all(promises);
-//     return results.flat();
-//   };
-
-//   Result = (indexList) => {
-//     let res = [];
-//     indexList.forEach((i) => res.push(_recipes.at(i)));
-//     return res;
-//   };
-// }
-// function isExciteOrNotEmptyA(something) {
-//   if (something && something.length > 0) {
-//     return true;
-//   }
-//   return false;
-// }
-// new searchAsyncA(userIn, recipes, prototypeSearchModel);
-
-// function search(userIn, recipes, prototypeSearchModel) {
-//   new searchAsyncA(userIn, recipes, prototypeSearchModel);
-// }
-// class searchAsyncA {
-//   constructor(userIn, recipes, prototypeSearchMode) {
-//     this._valUserInReg = new RegExp(`\\b${userIn}`, "gim");
-//     this.ValUserInRegExp = this._valUserInReg;
-//     this._prototypeSearchModel = prototypeSearchMode;
-//     this._recipes = recipes;
-//     this_indexList = new Set(this.searchResult());
-//     Result(this_indexList);
-//   }
-
-//   nameSearch() {
-//     let i = [];
-//     if (this.ValUserInRegExp) {
-//       this._prototypeSearchModel.forEach(({ name, index }) => {
-//         if (name.match(this._valUserInReg)) {
-//           i.push(index);
-//         }
-//       });
-//     }
-
-//     return i;
-//   }
-
-//   ingredientSearch() {
-//     let i = [];
-
-//     if (this.ValUserInRegExp) {
-//       this._prototypeSearchModel.forEach(({ ingredients, index }) => {
-//         ingredients.forEach((ingredient) => {
-//           if (ingredient.match(this._valUserInReg)) {
-//             i.push(index);
-//           }
-//         });
-//       });
-//     }
-
-//     return i;
-//   }
-
-//   descriptionSearch() {
-//     let i = [];
-//     if (this.ValUserInRegExp) {
-//       this._prototypeSearchModel.forEach(({ description, index }) => {
-//         if (description.match(this._valUserInReg)) {
-//           i.push(index);
-//         }
-//       });
-//     }
-
-//     return i;
-//   }
-
-//   searchResult() {
-//     const promises = [
-//       this.nameSearch(),
-//       this.ingredientSearch(),
-//       this.descriptionSearch(),
-//     ];
-//     const results = Promise.all(promises);
-//     return results.flat();
-//   }
-
-//   Result(indexList) {
-//     let res = [];
-//     indexList.forEach((i) => res.push(this._recipes.at(i)));
-//     return res;
-//   }
-// }
-// function isExciteOrNotEmpty(something) {
-//   if (something && something.length > 0) {
-//     return true;
-//   }
-//   return false;
-// }
-
-function nameSearch() {
-  let i = [];
-  if (ValUserInRegExp) {
-    _prototypeSearchModel.forEach(({ name, index }) => {
-      if (name.match(_valUserInReg)) {
-        i.push(index);
-      }
-    });
+  init() {
+    this.getResultByChunkListAsync();
   }
 
-  return i;
-}
+  searchUserIn = async (start, end) => {
+    const foundIndexes = [];
 
-function ingredientSearch() {
-  let i = [];
+    if (!this.ValUserInRegExp) return foundIndexes;
 
-  if (ValUserInRegExp) {
-    _prototypeSearchModel.forEach(({ ingredients, index }) => {
-      ingredients.forEach((ingredient) => {
-        if (ingredient.match(_valUserInReg)) {
-          i.push(index);
+    const resultPromise = new Promise((resolve) => {
+      for (let index = start; index < end; index++) {
+        const recipe = this._recipes[index];
+
+        const { name, ingredients, description } = recipe;
+
+        if (
+          name.search(this._valUserInReg) !== -1 ||
+          description.search(this._valUserInReg) !== -1 ||
+          ingredients
+            .map((obj) => obj.ingredient)
+            .toString()
+            .search(this._valUserInReg) !== -1
+        ) {
+          foundIndexes.push(recipe);
         }
-      });
-    });
-  }
-
-  return i;
-}
-
-function descriptionSearch() {
-  let i = [];
-  if (ValUserInRegExp) {
-    _prototypeSearchModel.forEach(({ description, index }) => {
-      if (description.match(_valUserInReg)) {
-        i.push(index);
       }
+
+      resolve(foundIndexes);
     });
-  }
 
-  return i;
-}
+    return resultPromise;
+  };
 
-async function searchResult() {
-  const promises = [nameSearch(), ingredientSearch(), descriptionSearch()];
-  const results = await Promise.all(promises);
-  return new Set(results.flat());
-}
+  getResultByChunkListAsync = async () => {
+    const maxQuantityLot = 4;
+    const lengthArr = this._recipes.length;
+    const lot = lengthArr / maxQuantityLot;
+    const promises = [];
 
-async function Result(indexList) {
-  debugger;
-  let res = [];
-  await indexList.forEach((i) => res.push(_recipes.at(i)));
-  return res;
+    for (let i = 0; i < maxQuantityLot; i++) {
+      const lotStart = Math.floor(i * lot);
+      const lotEnd = Math.floor((i + 1) * lot);
+      // res type []
+      promises.push(this.searchUserIn(lotStart, lotEnd));
+    }
+    const res = await Promise.all(promises);
+    return res.flat();
+  };
 }
-
-function isExciteOrNotEmptyA(something) {
-  if (something && something.length > 0) {
-    return true;
-  }
-  return false;
-}
-export async function res() {
-  let iList =await searchResult();
-  Result(iList);
-}
-
-//res();
+new searchAsyncB();
